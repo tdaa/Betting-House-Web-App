@@ -84,11 +84,11 @@
     <Attribute id="ent8#att23" key="true" name="idResultado" type="integer" db:column="idresultado"/>
     <Attribute id="ent8#att24" name="Designacao" type="string" db:column="designacao"/>
   </Entity>
-  <Relationship id="rel5" name="Utilizador_Aposta" sourceEntity="ent3" targetEntity="ent5" gr:bendpoints="-230,0,0,-130" db:database="db1" db:table="utilizador">
-    <RelationshipRole1 id="rel5#role9" name="UtilizadorToAposta" maxCard="1">
+  <Relationship id="rel5" name="Utilizador_Aposta" sourceEntity="ent3" targetEntity="ent5" gr:bendpoints="-230,0,0,-130" db:database="db1" db:table="aposta">
+    <RelationshipRole1 id="rel5#role9" name="UtilizadorToAposta" maxCard="N">
       <db:JoinColumn attribute="ent3#att5" name="idutilizador"/>
     </RelationshipRole1>
-    <RelationshipRole2 id="rel5#role10" name="ApostaToUtilizador" maxCard="N">
+    <RelationshipRole2 id="rel5#role10" name="ApostaToUtilizador" maxCard="1">
       <db:JoinColumn attribute="ent5#att14" name="aposta_idaposta"/>
     </RelationshipRole2>
   </Relationship>
@@ -96,11 +96,11 @@
     <Attribute id="ent9#att26" key="true" name="idOdd" type="integer" db:column="idodd"/>
     <Attribute id="ent9#att27" name="Valor" type="float" db:column="valor"/>
   </Entity>
-  <Relationship id="rel6" name="Odd_Resultado" sourceEntity="ent9" targetEntity="ent8" db:database="db1" db:table="odd">
-    <RelationshipRole1 id="rel6#role11" name="OddToResultado" maxCard="1">
+  <Relationship id="rel6" name="Odd_Resultado" sourceEntity="ent9" targetEntity="ent8" db:database="db1" db:table="resultado">
+    <RelationshipRole1 id="rel6#role11" name="OddToResultado" maxCard="N">
       <db:JoinColumn attribute="ent9#att26" name="idodd"/>
     </RelationshipRole1>
-    <RelationshipRole2 id="rel6#role12" name="ResultadoToOdd" maxCard="N">
+    <RelationshipRole2 id="rel6#role12" name="ResultadoToOdd" maxCard="1">
       <db:JoinColumn attribute="ent8#att23" name="resultado_idresultado"/>
     </RelationshipRole2>
   </Relationship>
@@ -116,11 +116,11 @@
     <Attribute id="ent6#att3" key="true" name="idCategoria" type="integer" db:column="idcategoria"/>
     <Attribute id="ent6#att4" name="Designacao" type="string" db:column="designacao"/>
   </Entity>
-  <Relationship id="rel7" name="Categoria_Evento" sourceEntity="ent6" targetEntity="ent7" db:database="db1" db:table="categoria">
-    <RelationshipRole1 id="rel7#role13" name="CategoriaToEvento" maxCard="1">
+  <Relationship id="rel7" name="Categoria_Evento" sourceEntity="ent6" targetEntity="ent7" db:database="db1" db:table="evento">
+    <RelationshipRole1 id="rel7#role13" name="CategoriaToEvento" maxCard="N">
       <db:JoinColumn attribute="ent6#att3" name="idcategoria"/>
     </RelationshipRole1>
-    <RelationshipRole2 id="rel7#role14" name="EventoToCategoria" maxCard="N">
+    <RelationshipRole2 id="rel7#role14" name="EventoToCategoria" maxCard="1">
       <db:JoinColumn attribute="ent7#att18" name="evento_idevento"/>
     </RelationshipRole2>
   </Relationship>
