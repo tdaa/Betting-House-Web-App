@@ -1,15 +1,19 @@
 <DataModel xmlns:db="http://www.webratio.com/2006/WebML/Database" xmlns:gr="http://www.webratio.com/2006/WebML/Graph">
-  <Entity id="User" name="User" duration="persistent" gr:x="885" gr:y="45" gr:hideAttributes="false" attributeOrder="userOID userName password email" db:database="db1" db:table="user">
-    <Attribute name="oid" id="userOID" type="integer" key="true" db:column="oid"/>
-    <Attribute name="userName" id="userName" type="string" db:column="username"/>
-    <Attribute name="password" id="password" type="password" db:column="password"/>
-    <Attribute name="email" id="email" type="string" db:column="email"/>
+  <Entity id="User" name="User" duration="persistent" gr:x="240" gr:y="-65" gr:hideAttributes="false" attributeOrder="userOID userName password email User#att13 User#att17 User#att20 User#att21" db:database="db1" db:table="user">
+    <Attribute name="idUtilizador" id="userOID" type="integer" key="true" db:column="idutilizador"/>
+    <Attribute name="Email" id="userName" type="string" db:column="email"/>
+    <Attribute name="Password" id="password" type="string" db:column="password"/>
+    <Attribute name="Nome" id="email" type="string" db:column="nome"/>
+    <Attribute id="User#att13" name="Tipo" type="string" db:column="tipo"/>
+    <Attribute id="User#att17" name="EssCoins" type="float" db:column="esscoins"/>
+    <Attribute id="User#att20" name="ValorPago" type="float" db:column="valorpago"/>
+    <Attribute id="User#att21" name="isPremium" type="string" db:column="ispremium"/>
   </Entity>
-  <Entity id="Group" name="Group" duration="persistent" gr:x="905" gr:y="45" gr:hideAttributes="false" attributeOrder="groupOID groupName" db:database="db1" db:table="group">
+  <Entity id="Group" name="Group" duration="persistent" gr:x="540" gr:y="-5" gr:hideAttributes="false" attributeOrder="groupOID groupName" db:database="db1" db:table="group">
     <Attribute name="oid" id="groupOID" type="integer" key="true" db:column="oid"/>
     <Attribute name="groupName" id="groupName" type="string" db:column="groupname"/>
   </Entity>
-  <Entity id="Module" name="Module" duration="persistent" gr:x="890" gr:y="35" gr:hideAttributes="false" attributeOrder="moduleOID moduleID moduleName" db:database="db1" db:table="module">
+  <Entity id="Module" name="Module" duration="persistent" gr:x="815" gr:y="-15" gr:hideAttributes="false" attributeOrder="moduleOID moduleID moduleName" db:database="db1" db:table="module">
     <Attribute name="oid" id="moduleOID" type="integer" key="true" db:column="oid"/>
     <Attribute name="moduleID" id="moduleID" type="string" db:column="moduleid"/>
     <Attribute name="moduleName" id="moduleName" type="string" db:column="modulename"/>
@@ -48,19 +52,9 @@
   </Relationship>
   <db:Database id="db1" name="BetDB" type="MySQL" url="jdbc:mysql://localhost:3306/BetWeb" username="root" password="vacsmgcs1415">
   </db:Database>
-  <Entity gr:x="515" gr:y="5" id="ent1" name="Admin" duration="persistent" attributeOrder="ent1#att1 ent1#att2" db:database="db1" db:table="admin">
+  <Entity gr:x="15" gr:y="-65" id="ent1" name="Admin" duration="persistent" attributeOrder="ent1#att1 ent1#att2" db:database="db1" db:table="admin">
     <Attribute id="ent1#att1" key="true" name="Email" type="string" db:column="email"/>
     <Attribute id="ent1#att2" name="Password" type="string" db:column="password"/>
-  </Entity>
-  <Entity gr:x="280" gr:y="-55" id="ent3" name="Utilizador" duration="persistent" attributeOrder="ent3#att5 ent3#att7 ent3#att8 ent3#att9 ent3#att10 ent3#att6 ent3#att11 ent3#att12" db:database="db1" db:table="utilizador">
-    <Attribute id="ent3#att5" key="true" name="idUtilizador" type="integer" db:column="idutilizador"/>
-    <Attribute id="ent3#att7" name="Email" type="string" db:column="email"/>
-    <Attribute id="ent3#att8" name="Password" type="string" db:column="password"/>
-    <Attribute id="ent3#att9" name="Nome" type="string" db:column="nome"/>
-    <Attribute id="ent3#att10" name="Tipo" type="string" db:column="tipo"/>
-    <Attribute id="ent3#att6" name="EssCoins" type="float" db:column="esscoins"/>
-    <Attribute id="ent3#att11" name="ValorPago" type="float" db:column="valorpago"/>
-    <Attribute id="ent3#att12" name="isPremium" type="integer" db:column="ispremium"/>
   </Entity>
   <Entity gr:x="55" gr:y="125" id="ent5" name="Aposta" duration="persistent" attributeOrder="ent5#att14 ent5#att15 ent5#att16" db:database="db1" db:table="aposta">
     <Attribute id="ent5#att14" key="true" name="idAposta" type="integer" db:column="idaposta"/>
@@ -84,14 +78,6 @@
     <Attribute id="ent8#att23" key="true" name="idResultado" type="integer" db:column="idresultado"/>
     <Attribute id="ent8#att24" name="Designacao" type="string" db:column="designacao"/>
   </Entity>
-  <Relationship id="rel5" name="Utilizador_Aposta" sourceEntity="ent3" targetEntity="ent5" gr:bendpoints="-230,0,0,-130" db:database="db1" db:table="aposta">
-    <RelationshipRole1 id="rel5#role9" name="UtilizadorToAposta" maxCard="N">
-      <db:JoinColumn attribute="ent3#att5" name="idutilizador"/>
-    </RelationshipRole1>
-    <RelationshipRole2 id="rel5#role10" name="ApostaToUtilizador" maxCard="1">
-      <db:JoinColumn attribute="ent5#att14" name="aposta_idaposta"/>
-    </RelationshipRole2>
-  </Relationship>
   <Entity gr:x="655" gr:y="330" id="ent9" name="Odd" duration="persistent" attributeOrder="ent9#att26 ent9#att27" db:database="db1" db:table="odd">
     <Attribute id="ent9#att26" key="true" name="idOdd" type="integer" db:column="idodd"/>
     <Attribute id="ent9#att27" name="Valor" type="float" db:column="valor"/>
@@ -122,6 +108,14 @@
     </RelationshipRole1>
     <RelationshipRole2 id="rel7#role14" name="EventoToCategoria" maxCard="1">
       <db:JoinColumn attribute="ent7#att18" name="evento_idevento"/>
+    </RelationshipRole2>
+  </Relationship>
+  <Relationship id="rel2" name="User_Aposta" sourceEntity="User" targetEntity="ent5" gr:bendpoints="-189,0,1,-140" db:database="db1" db:table="aposta">
+    <RelationshipRole1 id="rel2#role3" name="UserToAposta" maxCard="N">
+      <db:JoinColumn attribute="userOID" name="user_idutilizador"/>
+    </RelationshipRole1>
+    <RelationshipRole2 id="rel2#role4" name="ApostaToUser" maxCard="1">
+      <db:JoinColumn attribute="ent5#att14" name="idaposta"/>
     </RelationshipRole2>
   </Relationship>
 </DataModel>
