@@ -1,0 +1,39 @@
+<Page xmlns:gr="http://www.webratio.com/2006/WebML/Graph" xmlns:layout="http://www.webratio.com/2006/WebML/Layout" gr:x="0" gr:y="0" id="sv1#area2#area3#page8" name="Utilizador" landmark="true">
+  <ContentUnits>
+    <EntryUnit gr:x="0" gr:y="0" id="sv1#area2#area3#page8#enu1" name="Registar Utilizador" entity="ent3">
+      <Field id="sv1#area2#area3#page8#enu1#fld4" name="Email" type="string" modifiable="true" attribute="ent3#att7"/>
+      <Field id="sv1#area2#area3#page8#enu1#fld5" name="Password" type="string" modifiable="true" attribute="ent3#att8"/>
+      <Field id="sv1#area2#area3#page8#enu1#fld6" name="Nome" type="string" modifiable="true" attribute="ent3#att9"/>
+      <Field id="sv1#area2#area3#page8#enu1#fld7" name="Tipo" type="string" modifiable="true" attribute="ent3#att10"/>
+      <Field id="sv1#area2#area3#page8#enu1#fld8" name="EssCoins" type="float" modifiable="true" attribute="ent3#att6"/>
+      <Field id="sv1#area2#area3#page8#enu1#fld9" name="ValorPago" type="float" modifiable="true" attribute="ent3#att11"/>
+      <Field id="sv1#area2#area3#page8#enu1#fld10" name="isPremium" type="integer" modifiable="true" attribute="ent3#att12"/>
+    </EntryUnit>
+  </ContentUnits>
+  <layout:Grid containerType="grid">
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv1#area2#area3#page8#enu1">
+          <layout:Field field="sv1#area2#area3#page8#enu1#fld4"/>
+          <layout:Field field="sv1#area2#area3#page8#enu1#fld5"/>
+          <layout:Field field="sv1#area2#area3#page8#enu1#fld6"/>
+          <layout:Field field="sv1#area2#area3#page8#enu1#fld7"/>
+          <layout:Field field="sv1#area2#area3#page8#enu1#fld8"/>
+          <layout:Field field="sv1#area2#area3#page8#enu1#fld9"/>
+          <layout:Field field="sv1#area2#area3#page8#enu1#fld10"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+  </layout:Grid>
+</Page>
