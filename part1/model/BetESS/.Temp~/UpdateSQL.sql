@@ -33,13 +33,6 @@ create table `admin` (
 );
 
 
--- UtilizadorNormal [ent2]
-create table `utilizadornormal` (
-   `nome`  varchar(255),
-   `esscoins`  double precision
-);
-
-
 -- Utilizador [ent3]
 create table `utilizador` (
    `idutilizador`  integer  not null,
@@ -47,14 +40,10 @@ create table `utilizador` (
    `password`  varchar(255),
    `nome`  varchar(255),
    `tipo`  varchar(255),
-  primary key (`idutilizador`)
-);
-
-
--- UtilizadorPremium [ent4]
-create table `utilizadorpremium` (
+   `esscoins`  double precision,
    `valorpago`  double precision,
-   `esscoins`  double precision
+   `ispremium`  integer,
+  primary key (`idutilizador`)
 );
 
 
@@ -67,12 +56,18 @@ create table `aposta` (
 );
 
 
+-- Categoria [ent6]
+create table `categoria` (
+   `idcategoria`  integer  not null,
+   `designacao`  varchar(255),
+  primary key (`idcategoria`)
+);
+
+
 -- Evento [ent7]
 create table `evento` (
    `idevento`  integer  not null,
    `estado`  varchar(255),
-   `resultado`  varchar(255),
-   `tipo`  varchar(255),
    `diahora`  date,
   primary key (`idevento`)
 );
@@ -134,16 +129,6 @@ alter table `evento_resultado`   add index fk_evento_resultado_evento (`evento_i
 alter table `evento_resultado`   add index fk_evento_resultado_resultado (`resultado_idresultado`), add constraint fk_evento_resultado_resultado foreign key (`resultado_idresultado`) references `resultado` (`idresultado`);
 
 
--- Utilizador_UtilizadorNormal [rel2]
-alter table `utilizadornormal`  add column  `utilizador_idutilizador`  integer;
-alter table `utilizadornormal`   add index fk_utilizadornormal_utilizador (`utilizador_idutilizador`), add constraint fk_utilizadornormal_utilizador foreign key (`utilizador_idutilizador`) references `utilizador` (`idutilizador`);
-
-
--- Utilizador_UtilizadorPremium [rel3]
-alter table `utilizadorpremium`  add column  `utilizador_idutilizador`  integer;
-alter table `utilizadorpremium`   add index fk_utilizadorpremium_utilizado (`utilizador_idutilizador`), add constraint fk_utilizadorpremium_utilizado foreign key (`utilizador_idutilizador`) references `utilizador` (`idutilizador`);
-
-
 -- Aposta_Evento [rel4]
 create table `aposta_evento` (
    `aposta_idaposta`  integer not null,
@@ -162,5 +147,10 @@ alter table `utilizador`   add index fk_utilizador_aposta (`aposta_idaposta`), a
 -- Odd_Resultado [rel6]
 alter table `odd`  add column  `resultado_idresultado`  integer;
 alter table `odd`   add index fk_odd_resultado (`resultado_idresultado`), add constraint fk_odd_resultado foreign key (`resultado_idresultado`) references `resultado` (`idresultado`);
+
+
+-- Categoria_Evento [rel7]
+alter table `categoria`  add column  `evento_idevento`  integer;
+alter table `categoria`   add index fk_categoria_evento (`evento_idevento`), add constraint fk_categoria_evento foreign key (`evento_idevento`) references `evento` (`idevento`);
 
 

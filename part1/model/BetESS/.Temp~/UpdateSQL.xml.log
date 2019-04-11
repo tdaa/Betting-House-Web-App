@@ -1,60 +1,57 @@
-[04 Abr 2019 17:32:25] DEBUG Executing SQL script
-[04 Abr 2019 17:32:25] INFO ================================================================================
-[04 Abr 2019 17:32:25] INFO outputPath= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.xml'
-[04 Abr 2019 17:32:25] INFO onError= 'stop'
-[04 Abr 2019 17:32:25] INFO statementSeparator= ';'
-[04 Abr 2019 17:32:25] INFO derby.system.home= '/Users/gcsousa/WebRatio-Projects/.metadata/.plugins/com.webratio.commons.db/derby'
-[04 Abr 2019 17:32:25] INFO password= 'vacsmgcs1415'
-[04 Abr 2019 17:32:25] INFO url= 'jdbc:mysql://localhost:3306/BetWeb'
-[04 Abr 2019 17:32:25] INFO username= 'root'
-[04 Abr 2019 17:32:25] INFO autoCommit= 'false'
-[04 Abr 2019 17:32:25] INFO outputLogPath= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.xml.log'
-[04 Abr 2019 17:32:25] INFO driverClass= 'com.mysql.jdbc.Driver'
-[04 Abr 2019 17:32:25] INFO encoding= ''
-[04 Abr 2019 17:32:25] INFO eventSocketPort= '51959'
-[04 Abr 2019 17:32:25] INFO sqlScript= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.sql'
-[04 Abr 2019 17:32:25] INFO ================================================================================
-[04 Abr 2019 17:32:25] INFO Connecting to the Database...
-[04 Abr 2019 17:32:25] INFO Database connection estabilished
-[04 Abr 2019 17:32:25] INFO transaction isolation: 4
-[04 Abr 2019 17:32:25] DEBUG ================================================================================
-[04 Abr 2019 17:32:25] DEBUG Executing SQL script file: /Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.sql
-[04 Abr 2019 17:32:25] DEBUG Executing statement:  create table `group` ( `oid`  integer  not null, `groupname`  varchar(255), primary key (`oid`) )
-[04 Abr 2019 17:32:25] DEBUG Executing statement:    create table `module` ( `oid`  integer  not null, `moduleid`  varchar(255), `modulename`  varchar(255), primary key (`oid`) )
-[04 Abr 2019 17:32:25] DEBUG Executing statement:    create table `user` ( `oid`  integer  not null, `username`  varchar(255), `password`  varchar(255), `email`  varchar(255), primary key (`oid`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `admin` ( `email`  varchar(255)  not null, `password`  varchar(255), primary key (`email`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `utilizadornormal` ( `nome`  varchar(255), `esscoins`  double precision )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `utilizador` ( `idutilizador`  integer  not null, `email`  varchar(255), `password`  varchar(255), `nome`  varchar(255), `tipo`  varchar(255), primary key (`idutilizador`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `utilizadorpremium` ( `valorpago`  double precision, `esscoins`  double precision )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `aposta` ( `idaposta`  integer  not null, `valor`  double precision, `estado`  varchar(255), primary key (`idaposta`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `evento` ( `idevento`  integer  not null, `estado`  varchar(255), `resultado`  varchar(255), `tipo`  varchar(255), `diahora`  date, primary key (`idevento`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `resultado` ( `idresultado`  integer  not null, `designacao`  varchar(255), primary key (`idresultado`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `odd` ( `idodd`  integer  not null, `valor`  double precision, primary key (`idodd`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    alter table `group`  add column  `module_oid`  integer
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `group`   add index fk_group_module (`module_oid`), add constraint fk_group_module foreign key (`module_oid`) references `module` (`oid`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `group_module` ( `group_oid`  integer not null, `module_oid`  integer not null, primary key (`group_oid`, `module_oid`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `group_module`   add index fk_group_module_group (`group_oid`), add constraint fk_group_module_group foreign key (`group_oid`) references `group` (`oid`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `group_module`   add index fk_group_module_module (`module_oid`), add constraint fk_group_module_module foreign key (`module_oid`) references `module` (`oid`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    alter table `user`  add column  `group_oid`  integer
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `user`   add index fk_user_group (`group_oid`), add constraint fk_user_group foreign key (`group_oid`) references `group` (`oid`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `user_group` ( `user_oid`  integer not null, `group_oid`  integer not null, primary key (`user_oid`, `group_oid`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `user_group`   add index fk_user_group_user (`user_oid`), add constraint fk_user_group_user foreign key (`user_oid`) references `user` (`oid`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `user_group`   add index fk_user_group_group (`group_oid`), add constraint fk_user_group_group foreign key (`group_oid`) references `group` (`oid`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `evento_resultado` ( `evento_idevento`  integer not null, `resultado_idresultado`  integer not null, primary key (`evento_idevento`, `resultado_idresultado`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `evento_resultado`   add index fk_evento_resultado_evento (`evento_idevento`), add constraint fk_evento_resultado_evento foreign key (`evento_idevento`) references `evento` (`idevento`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `evento_resultado`   add index fk_evento_resultado_resultado (`resultado_idresultado`), add constraint fk_evento_resultado_resultado foreign key (`resultado_idresultado`) references `resultado` (`idresultado`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    alter table `utilizadornormal`  add column  `utilizador_idutilizador`  integer
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `utilizadornormal`   add index fk_utilizadornormal_utilizador (`utilizador_idutilizador`), add constraint fk_utilizadornormal_utilizador foreign key (`utilizador_idutilizador`) references `utilizador` (`idutilizador`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    alter table `utilizadorpremium`  add column  `utilizador_idutilizador`  integer
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `utilizadorpremium`   add index fk_utilizadorpremium_utilizado (`utilizador_idutilizador`), add constraint fk_utilizadorpremium_utilizado foreign key (`utilizador_idutilizador`) references `utilizador` (`idutilizador`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    create table `aposta_evento` ( `aposta_idaposta`  integer not null, `evento_idevento`  integer not null, primary key (`aposta_idaposta`, `evento_idevento`) )
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `aposta_evento`   add index fk_aposta_evento_aposta (`aposta_idaposta`), add constraint fk_aposta_evento_aposta foreign key (`aposta_idaposta`) references `aposta` (`idaposta`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `aposta_evento`   add index fk_aposta_evento_evento (`evento_idevento`), add constraint fk_aposta_evento_evento foreign key (`evento_idevento`) references `evento` (`idevento`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    alter table `utilizador`  add column  `aposta_idaposta`  integer
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `utilizador`   add index fk_utilizador_aposta (`aposta_idaposta`), add constraint fk_utilizador_aposta foreign key (`aposta_idaposta`) references `aposta` (`idaposta`)
-[04 Abr 2019 17:32:26] DEBUG Executing statement:    alter table `odd`  add column  `resultado_idresultado`  integer
-[04 Abr 2019 17:32:26] DEBUG Executing statement:  alter table `odd`   add index fk_odd_resultado (`resultado_idresultado`), add constraint fk_odd_resultado foreign key (`resultado_idresultado`) references `resultado` (`idresultado`)
-[04 Abr 2019 17:32:26] DEBUG ================================================================================
-[04 Abr 2019 17:32:26] DEBUG SQL SCRIPT SUCCESSFULLY EXECUTED
-[04 Abr 2019 17:32:26] INFO Database connection closed
-[04 Abr 2019 17:32:26] DEBUG Total time: 671 milliseconds
+[11 Abr 2019 09:26:50] DEBUG Executing SQL script
+[11 Abr 2019 09:26:50] INFO ================================================================================
+[11 Abr 2019 09:26:50] INFO outputPath= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.xml'
+[11 Abr 2019 09:26:50] INFO onError= 'stop'
+[11 Abr 2019 09:26:50] INFO statementSeparator= ';'
+[11 Abr 2019 09:26:50] INFO derby.system.home= '/Users/gcsousa/WebRatio-Projects/.metadata/.plugins/com.webratio.commons.db/derby'
+[11 Abr 2019 09:26:50] INFO password= 'vacsmgcs1415'
+[11 Abr 2019 09:26:50] INFO url= 'jdbc:mysql://localhost:3306/BetWeb'
+[11 Abr 2019 09:26:50] INFO username= 'root'
+[11 Abr 2019 09:26:50] INFO autoCommit= 'false'
+[11 Abr 2019 09:26:50] INFO outputLogPath= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.xml.log'
+[11 Abr 2019 09:26:50] INFO driverClass= 'com.mysql.jdbc.Driver'
+[11 Abr 2019 09:26:50] INFO encoding= ''
+[11 Abr 2019 09:26:50] INFO eventSocketPort= '58421'
+[11 Abr 2019 09:26:50] INFO sqlScript= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.sql'
+[11 Abr 2019 09:26:50] INFO ================================================================================
+[11 Abr 2019 09:26:50] INFO Connecting to the Database...
+[11 Abr 2019 09:26:50] INFO Database connection estabilished
+[11 Abr 2019 09:26:50] INFO transaction isolation: 4
+[11 Abr 2019 09:26:50] DEBUG ================================================================================
+[11 Abr 2019 09:26:50] DEBUG Executing SQL script file: /Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/UpdateSQL.sql
+[11 Abr 2019 09:26:50] DEBUG Executing statement:  create table `group` ( `oid`  integer  not null, `groupname`  varchar(255), primary key (`oid`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `module` ( `oid`  integer  not null, `moduleid`  varchar(255), `modulename`  varchar(255), primary key (`oid`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `user` ( `oid`  integer  not null, `username`  varchar(255), `password`  varchar(255), `email`  varchar(255), primary key (`oid`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `admin` ( `email`  varchar(255)  not null, `password`  varchar(255), primary key (`email`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `utilizador` ( `idutilizador`  integer  not null, `email`  varchar(255), `password`  varchar(255), `nome`  varchar(255), `tipo`  varchar(255), `esscoins`  double precision, `valorpago`  double precision, `ispremium`  integer, primary key (`idutilizador`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `aposta` ( `idaposta`  integer  not null, `valor`  double precision, `estado`  varchar(255), primary key (`idaposta`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `categoria` ( `idcategoria`  integer  not null, `designacao`  varchar(255), primary key (`idcategoria`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `evento` ( `idevento`  integer  not null, `estado`  varchar(255), `diahora`  date, primary key (`idevento`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `resultado` ( `idresultado`  integer  not null, `designacao`  varchar(255), primary key (`idresultado`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `odd` ( `idodd`  integer  not null, `valor`  double precision, primary key (`idodd`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    alter table `group`  add column  `module_oid`  integer
+[11 Abr 2019 09:26:50] DEBUG Executing statement:  alter table `group`   add index fk_group_module (`module_oid`), add constraint fk_group_module foreign key (`module_oid`) references `module` (`oid`)
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    create table `group_module` ( `group_oid`  integer not null, `module_oid`  integer not null, primary key (`group_oid`, `module_oid`) )
+[11 Abr 2019 09:26:50] DEBUG Executing statement:  alter table `group_module`   add index fk_group_module_group (`group_oid`), add constraint fk_group_module_group foreign key (`group_oid`) references `group` (`oid`)
+[11 Abr 2019 09:26:50] DEBUG Executing statement:  alter table `group_module`   add index fk_group_module_module (`module_oid`), add constraint fk_group_module_module foreign key (`module_oid`) references `module` (`oid`)
+[11 Abr 2019 09:26:50] DEBUG Executing statement:    alter table `user`  add column  `group_oid`  integer
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `user`   add index fk_user_group (`group_oid`), add constraint fk_user_group foreign key (`group_oid`) references `group` (`oid`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:    create table `user_group` ( `user_oid`  integer not null, `group_oid`  integer not null, primary key (`user_oid`, `group_oid`) )
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `user_group`   add index fk_user_group_user (`user_oid`), add constraint fk_user_group_user foreign key (`user_oid`) references `user` (`oid`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `user_group`   add index fk_user_group_group (`group_oid`), add constraint fk_user_group_group foreign key (`group_oid`) references `group` (`oid`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:    create table `evento_resultado` ( `evento_idevento`  integer not null, `resultado_idresultado`  integer not null, primary key (`evento_idevento`, `resultado_idresultado`) )
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `evento_resultado`   add index fk_evento_resultado_evento (`evento_idevento`), add constraint fk_evento_resultado_evento foreign key (`evento_idevento`) references `evento` (`idevento`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `evento_resultado`   add index fk_evento_resultado_resultado (`resultado_idresultado`), add constraint fk_evento_resultado_resultado foreign key (`resultado_idresultado`) references `resultado` (`idresultado`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:    create table `aposta_evento` ( `aposta_idaposta`  integer not null, `evento_idevento`  integer not null, primary key (`aposta_idaposta`, `evento_idevento`) )
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `aposta_evento`   add index fk_aposta_evento_aposta (`aposta_idaposta`), add constraint fk_aposta_evento_aposta foreign key (`aposta_idaposta`) references `aposta` (`idaposta`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `aposta_evento`   add index fk_aposta_evento_evento (`evento_idevento`), add constraint fk_aposta_evento_evento foreign key (`evento_idevento`) references `evento` (`idevento`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:    alter table `utilizador`  add column  `aposta_idaposta`  integer
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `utilizador`   add index fk_utilizador_aposta (`aposta_idaposta`), add constraint fk_utilizador_aposta foreign key (`aposta_idaposta`) references `aposta` (`idaposta`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:    alter table `odd`  add column  `resultado_idresultado`  integer
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `odd`   add index fk_odd_resultado (`resultado_idresultado`), add constraint fk_odd_resultado foreign key (`resultado_idresultado`) references `resultado` (`idresultado`)
+[11 Abr 2019 09:26:51] DEBUG Executing statement:    alter table `categoria`  add column  `evento_idevento`  integer
+[11 Abr 2019 09:26:51] DEBUG Executing statement:  alter table `categoria`   add index fk_categoria_evento (`evento_idevento`), add constraint fk_categoria_evento foreign key (`evento_idevento`) references `evento` (`idevento`)
+[11 Abr 2019 09:26:51] DEBUG ================================================================================
+[11 Abr 2019 09:26:51] DEBUG SQL SCRIPT SUCCESSFULLY EXECUTED
+[11 Abr 2019 09:26:51] INFO Database connection closed
+[11 Abr 2019 09:26:51] DEBUG Total time: 652 milliseconds
