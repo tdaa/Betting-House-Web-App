@@ -1,0 +1,26 @@
+[17 Abr 2019 17:11:19] DEBUG Executing SQL script
+[17 Abr 2019 17:11:19] INFO ================================================================================
+[17 Abr 2019 17:11:19] INFO outputPath= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/RollbackSQL.xml'
+[17 Abr 2019 17:11:19] INFO onError= 'stop'
+[17 Abr 2019 17:11:19] INFO statementSeparator= ';'
+[17 Abr 2019 17:11:19] INFO derby.system.home= '/Users/gcsousa/WebRatio-Projects/.metadata/.plugins/com.webratio.commons.db/derby'
+[17 Abr 2019 17:11:19] INFO password= 'vacsmgcs1415'
+[17 Abr 2019 17:11:19] INFO url= 'jdbc:mysql://localhost:3306/BetWeb'
+[17 Abr 2019 17:11:19] INFO username= 'root'
+[17 Abr 2019 17:11:19] INFO autoCommit= 'false'
+[17 Abr 2019 17:11:19] INFO outputLogPath= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/RollbackSQL.xml.log'
+[17 Abr 2019 17:11:19] INFO driverClass= 'com.mysql.jdbc.Driver'
+[17 Abr 2019 17:11:19] INFO encoding= ''
+[17 Abr 2019 17:11:19] INFO eventSocketPort= '52460'
+[17 Abr 2019 17:11:19] INFO sqlScript= '/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/RollbackSQL.sql'
+[17 Abr 2019 17:11:19] INFO ================================================================================
+[17 Abr 2019 17:11:19] INFO Connecting to the Database...
+[17 Abr 2019 17:11:19] INFO Database connection estabilished
+[17 Abr 2019 17:11:19] INFO transaction isolation: 4
+[17 Abr 2019 17:11:19] DEBUG ================================================================================
+[17 Abr 2019 17:11:19] DEBUG Executing SQL script file: /Users/gcsousa/WebRatio-Projects/BetESS/.Temp~/RollbackSQL.sql
+[17 Abr 2019 17:11:19] DEBUG Executing statement:  alter table `aposta`   drop column  `evento_resultado`
+[17 Abr 2019 17:11:19] DEBUG ================================================================================
+[17 Abr 2019 17:11:19] DEBUG SQL SCRIPT SUCCESSFULLY EXECUTED
+[17 Abr 2019 17:11:19] INFO Database connection closed
+[17 Abr 2019 17:11:19] DEBUG Total time: 299 milliseconds

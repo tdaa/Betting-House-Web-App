@@ -1,0 +1,56 @@
+<Page xmlns:gr="http://www.webratio.com/2006/WebML/Graph" xmlns:layout="http://www.webratio.com/2006/WebML/Layout" gr:x="195" gr:y="0" id="sv2#area9#area10#page20" name="Eventos" landmark="true">
+  <ContentUnits>
+    <EntryUnit gr:x="0" gr:y="0" id="sv2#area9#area10#page20#enu5" name="Registar Evento" entity="ent7" linkOrder="sv2#area9#area10#page20#enu5#ln2" fieldOrder="sv2#area9#area10#page20#enu5#fld2 sv2#area9#area10#page20#enu5#sfld2 sv2#area9#area10#page20#enu5#fld6 sv2#area9#area10#page20#enu5#fld7 sv2#area9#area10#page20#enu5#fld15 sv2#area9#area10#page20#enu5#fld16 sv2#area9#area10#page20#enu5#fld24">
+      <Field id="sv2#area9#area10#page20#enu5#fld1" name="Estado" type="integer" modifiable="true" attribute="ent7#att19" hidden="true"/>
+      <Field id="sv2#area9#area10#page20#enu5#fld2" name="DiaHora" type="date" modifiable="true" attribute="ent7#att22"/>
+      <Field id="sv2#area9#area10#page20#enu5#fld6" name="Equipa1" type="string" modifiable="true" attribute="ent7#att25"/>
+      <Field id="sv2#area9#area10#page20#enu5#fld7" name="Equipa2" type="string" modifiable="true" attribute="ent7#att26"/>
+      <Field id="sv2#area9#area10#page20#enu5#fld15" name="Odd1" type="float" modifiable="true" attribute="ent7#att27"/>
+      <Field id="sv2#area9#area10#page20#enu5#fld16" name="Odd2" type="float" modifiable="true" attribute="ent7#att28"/>
+      <Field id="sv2#area9#area10#page20#enu5#fld24" name="OddEmpate" type="float" modifiable="true" attribute="ent7#att29"/>
+      <Field id="sv2#area9#area10#page20#enu5#fld25" name="Resultado" type="integer" modifiable="true" attribute="ent7#att30" hidden="true"/>
+      <Link id="sv2#area9#area10#page20#enu5#ln2" name="Registar" to="sv2#area9#cru1" type="normal" validate="true">
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par1" name="Categoria_Categoria" source="sv2#area9#area10#page20#enu5#sfld2" target="sv2#area9#cru1.ent7#att21"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par2" name="DiaHora_DiaHora" source="sv2#area9#area10#page20#enu5#fld2" target="sv2#area9#cru1.ent7#att22"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par5" name="Equipa1_Equipa1" source="sv2#area9#area10#page20#enu5#fld6" target="sv2#area9#cru1.ent7#att25"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par6" name="Equipa2_Equipa2" source="sv2#area9#area10#page20#enu5#fld7" target="sv2#area9#cru1.ent7#att26"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par7" name="Estado_Estado" target="sv2#area9#cru1.ent7#att19" sourceValue="1"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par8" name="Evento Object_Evento Object" source="entityBean" target="sv2#area9#cru1.entityBeans"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par9" name="Odd1_Odd1" source="sv2#area9#area10#page20#enu5#fld15" target="sv2#area9#cru1.ent7#att27"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par10" name="Odd2_Odd2" source="sv2#area9#area10#page20#enu5#fld16" target="sv2#area9#cru1.ent7#att28"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par11" name="OddEmpate_OddEmpate" source="sv2#area9#area10#page20#enu5#fld24" target="sv2#area9#cru1.ent7#att29"/>
+        <LinkParameter id="sv2#area9#area10#page20#enu5#ln2#par12" name="Resultado_Resultado" target="sv2#area9#cru1.ent7#att30" sourceValue="NULL"/>
+      </Link>
+      <SelectionField id="sv2#area9#area10#page20#enu5#sfld2" attribute="ent7#att21" type="string" name="Categoria">
+        <Slot id="sv2#area9#area10#page20#enu5#sfld2#slot3" name="Categorias" label="true" output="true" value="Futebol|Basquetebol|Andebol|Hoquei|Rugby"/>
+      </SelectionField>
+    </EntryUnit>
+  </ContentUnits>
+  <layout:Grid containerType="grid">
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area9#area10#page20#enu5">
+          <layout:Link link="sv2#area9#area10#page20#enu5#ln2"/>
+          <layout:Field field="sv2#area9#area10#page20#enu5#fld2"/>
+          <layout:Field field="sv2#area9#area10#page20#enu5#sfld2"/>
+          <layout:Field field="sv2#area9#area10#page20#enu5#fld6"/>
+          <layout:Field field="sv2#area9#area10#page20#enu5#fld7"/>
+          <layout:Field field="sv2#area9#area10#page20#enu5#fld15"/>
+          <layout:Field field="sv2#area9#area10#page20#enu5#fld16"/>
+          <layout:Field field="sv2#area9#area10#page20#enu5#fld24"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+  </layout:Grid>
+</Page>

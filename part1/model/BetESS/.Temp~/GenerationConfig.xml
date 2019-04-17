@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+  <Properties>
+    <Property name="ajaxActivated">true</Property>
+    <Property name="applicationServer">Tomcat</Property>
+    <Property name="cloudDeploy">false</Property>
+    <Property name="commonsLibDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.commons.libs_7.2.18.201903231300/lib</Property>
+    <Property name="dbConfigPath">/var/folders/tn/s4cxbm555d99lqnw4_wvbtxh0000gn/T/WRDBConfig4365678177964229521.xml</Property>
+    <Property name="defaultEncoding"></Property>
+    <Property name="deployCorePluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/configuration/org.eclipse.osgi/bundles/49/1/.cp</Property>
+    <Property name="derbySystemHome">/Users/gcsousa/WebRatio-Projects/.metadata/.plugins/com.webratio.commons.db/derby</Property>
+    <Property name="enterpriseProjectDir"></Property>
+    <Property name="eventSocketPort">52910</Property>
+    <Property name="excludedProjects" type="list"></Property>
+    <Property name="generationTime">201904171734</Property>
+    <Property name="helpersPluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.generator.helpers_7.2.18.201903231300</Property>
+    <Property name="hostAlwaysAllowed">false</Property>
+    <Property name="i18nBundleKeysFile" type="file"></Property>
+    <Property name="i18nExtraBundleFile" type="file"></Property>
+    <Property name="localDeploy">true</Property>
+    <Property name="lockDir">/Users/gcsousa/WebRatio-Projects/BetESS/.Temp~</Property>
+    <Property name="normalizeDescriptors">false</Property>
+    <Property name="outputPath">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS</Property>
+    <Property name="phases">All</Property>
+    <Property name="projectDir">/Users/gcsousa/WebRatio-Projects/BetESS</Property>
+    <Property name="projectName">BetESS</Property>
+    <Property name="projectPath">/var/folders/tn/s4cxbm555d99lqnw4_wvbtxh0000gn/T/Project1798202552546720907.wr</Property>
+    <Property name="projectType">WEBPROJECT</Property>
+    <Property name="rootModuleName"></Property>
+    <Property name="uiPluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.ide.ui_7.2.18.201903231300</Property>
+    <Property name="webappPluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.generator.webapp_7.2.18.201903231300</Property>
+    <Property name="wrBuildId">201903231300</Property>
+    <Property name="wrGenerateOldValidationRules">false</Property>
+    <Property name="wrModelStatistics">pages=13|units=23</Property>
+    <Property name="wrVersion">7.2.18</Property>
+  </Properties>
+  <Plugins>
+    <Plugin id="com.webratio.commons.libs" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.commons.libs_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.commons.transform" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.commons.transform_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.debug" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.debug_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.json" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.json_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.apache.commons.codec" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.apache.commons.codec_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.apache.commons.collections" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.apache.commons.collections_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.apache.commons.httpclient" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.apache.commons.httpclient_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.apache.commons.lang" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.apache.commons.lang_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.apache.commons.logging" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.apache.commons.logging_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.dom4j" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.dom4j_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.google.guava" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.google.guava_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.lib.javassist" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.lib.javassist_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.rtx.extras" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.rtx.extras_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.rtx" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.rtx_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.struts13" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.struts13_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.units.content" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.content_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.units.controlflow" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.controlflow_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.units.module" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.module_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.units.operation" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.operation_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.units.session" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.session_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.units.utility" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.utility_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.units.validation" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.validation_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.units.ws" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.units.ws_7.2.18.201903231300" type="components"/>
+    <Plugin id="com.webratio.ws" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.ws_7.2.18.201903231300"/>
+    <Plugin id="com.webratio.xsd" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.xsd_7.2.18.201903231300"/>
+  </Plugins>
+  <Styles>
+    <Style name="Excel" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/Excel_7.2.18.201903231300"/>
+    <Style name="Multiflex" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/Multiflex_7.2.18.201903231300"/>
+    <Style name="Reports" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/Reports_7.2.18.201903231300"/>
+    <Style name="WebRatio" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/WebRatio_7.2.18.201903231300"/>
+    <Style name="WRDefault" path="/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/WRDefault_7.2.18.201903231300"/>
+  </Styles>
+  <FileEncodings/>
+</Configuration>
