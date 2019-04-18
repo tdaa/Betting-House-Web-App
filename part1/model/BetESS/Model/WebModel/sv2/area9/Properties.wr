@@ -31,6 +31,9 @@
         <KeyCondition id="sv2#area9#mfu3#su11#kcond9" name="KeyCondition9" predicate="in" implied="false"/>
       </Selector>
       <OKLink id="sv2#area9#mfu3#oln5" name="OKFlow5" to="sv2#area9#area11#page23" automaticCoupling="true" gr:bendpoints="1,227,476,177;-287,226,178,176"/>
+      <KOLink id="sv2#area9#mfu3#kln4" name="KOFlow4" to="sv2#area9#page1#mssu1">
+        <LinkParameter id="sv2#area9#mfu3#kln4#par3" name="Erro ao fechar evento!_Shown Messages" sourceValue="Erro ao fechar evento!" target="sv2#area9#page1#mssu1.shownMessages"/>
+      </KOLink>
     </ModifyUnit>
   </OperationUnits>
 </Area>

@@ -46,8 +46,7 @@
       <db:JoinColumn attribute="moduleOID" name="module_oid"/>
     </RelationshipRole2>
   </Relationship>
-  <db:Database id="db1" name="BetDB" type="MySQL" url="jdbc:mysql://localhost:3306/BetWeb" username="root" password="vacsmgcs1415">
-  </db:Database>
+  <db:Database id="db1" name="BetDB" type="MySQL" url="jdbc:mysql://localhost:3306/BetWeb" username="root" password="vacsmgcs1415"/>
   <Entity gr:x="295" gr:y="-50" id="ent1" name="Admin" duration="persistent" attributeOrder="ent1#att1 ent1#att2" db:database="db1" db:table="admin">
     <Attribute id="ent1#att1" key="true" name="Email" type="string" db:column="email"/>
     <Attribute id="ent1#att2" name="Password" type="string" db:column="password"/>

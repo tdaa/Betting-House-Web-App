@@ -6,14 +6,14 @@
     <Property name="applicationServer">Tomcat</Property>
     <Property name="cloudDeploy">false</Property>
     <Property name="commonsLibDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.commons.libs_7.2.18.201903231300/lib</Property>
-    <Property name="dbConfigPath">/var/folders/tn/s4cxbm555d99lqnw4_wvbtxh0000gn/T/WRDBConfig4365678177964229521.xml</Property>
+    <Property name="dbConfigPath">/var/folders/tn/s4cxbm555d99lqnw4_wvbtxh0000gn/T/WRDBConfig6721022374553203954.xml</Property>
     <Property name="defaultEncoding"></Property>
     <Property name="deployCorePluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/configuration/org.eclipse.osgi/bundles/49/1/.cp</Property>
     <Property name="derbySystemHome">/Users/gcsousa/WebRatio-Projects/.metadata/.plugins/com.webratio.commons.db/derby</Property>
     <Property name="enterpriseProjectDir"></Property>
-    <Property name="eventSocketPort">52910</Property>
+    <Property name="eventSocketPort">53272</Property>
     <Property name="excludedProjects" type="list"></Property>
-    <Property name="generationTime">201904171734</Property>
+    <Property name="generationTime">201904181423</Property>
     <Property name="helpersPluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.generator.helpers_7.2.18.201903231300</Property>
     <Property name="hostAlwaysAllowed">false</Property>
     <Property name="i18nBundleKeysFile" type="file"></Property>
@@ -25,14 +25,14 @@
     <Property name="phases">All</Property>
     <Property name="projectDir">/Users/gcsousa/WebRatio-Projects/BetESS</Property>
     <Property name="projectName">BetESS</Property>
-    <Property name="projectPath">/var/folders/tn/s4cxbm555d99lqnw4_wvbtxh0000gn/T/Project1798202552546720907.wr</Property>
+    <Property name="projectPath">/var/folders/tn/s4cxbm555d99lqnw4_wvbtxh0000gn/T/Project4563528461194745888.wr</Property>
     <Property name="projectType">WEBPROJECT</Property>
     <Property name="rootModuleName"></Property>
     <Property name="uiPluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.ide.ui_7.2.18.201903231300</Property>
     <Property name="webappPluginDir">/Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.generator.webapp_7.2.18.201903231300</Property>
     <Property name="wrBuildId">201903231300</Property>
     <Property name="wrGenerateOldValidationRules">false</Property>
-    <Property name="wrModelStatistics">pages=13|units=23</Property>
+    <Property name="wrModelStatistics">pages=14|units=24</Property>
     <Property name="wrVersion">7.2.18</Property>
   </Properties>
   <Plugins>

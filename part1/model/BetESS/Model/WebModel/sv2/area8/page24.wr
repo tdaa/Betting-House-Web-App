@@ -14,7 +14,7 @@
       <Field id="sv2#area8#page24#enu7#fld33" name="Evento_idEvento" type="integer" modifiable="true" attribute="ent5#att32"/>
       <Field id="sv2#area8#page24#enu7#fld37" name="Evento_Resultado" type="integer" modifiable="true" attribute="ent5#att33"/>
     </EntryUnit>
-    <IndexUnit id="sv2#area8#page24#inu12" name="Lista de Eventos" gr:x="0" gr:y="100" entity="ent7" displayAttributes="ent7#att18 ent7#att22 ent7#att21 ent7#att25 ent7#att26 ent7#att27 ent7#att28 ent7#att29">
+    <IndexUnit id="sv2#area8#page24#inu12" name="Lista de Eventos para Aposta" gr:x="0" gr:y="100" entity="ent7" displayAttributes="ent7#att18 ent7#att22 ent7#att21 ent7#att25 ent7#att26 ent7#att27 ent7#att28 ent7#att29">
       <Selector id="sv2#area8#page24#inu12#su9" defaultPolicy="fill" booleanOperator="and">
         <AttributesCondition id="sv2#area8#page24#inu12#su9#acond2" name="AttCondition1" predicate="eq" booleanOperator="or" implied="false" attributes="ent7#att19" value="1" ignoreCase="false"/>
       </Selector>
