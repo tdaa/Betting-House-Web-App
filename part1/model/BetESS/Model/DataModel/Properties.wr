@@ -47,11 +47,11 @@
     </RelationshipRole2>
   </Relationship>
   <db:Database id="db1" name="BetDB" type="MySQL" url="jdbc:mysql://localhost:3306/BetWeb" username="root" password="vacsmgcs1415"/>
-  <Entity gr:x="295" gr:y="-50" id="ent1" name="Admin" duration="persistent" attributeOrder="ent1#att1 ent1#att2" db:database="db1" db:table="admin">
+  <Entity gr:x="270" gr:y="-5" id="ent1" name="Admin" duration="persistent" attributeOrder="ent1#att1 ent1#att2" db:database="db1" db:table="admin">
     <Attribute id="ent1#att1" key="true" name="Email" type="string" db:column="email"/>
     <Attribute id="ent1#att2" name="Password" type="string" db:column="password"/>
   </Entity>
-  <Entity gr:x="270" gr:y="100" id="ent5" name="Aposta" duration="persistent" attributeOrder="ent5#att14 ent5#att15 ent5#att16 ent5#att31 ent5#att32 ent5#att33" db:database="db1" db:table="aposta">
+  <Entity gr:x="270" gr:y="145" id="ent5" name="Aposta" duration="persistent" attributeOrder="ent5#att14 ent5#att15 ent5#att16 ent5#att31 ent5#att32 ent5#att33" db:database="db1" db:table="aposta">
     <Attribute id="ent5#att14" key="true" name="idAposta" type="integer" db:column="idaposta"/>
     <Attribute id="ent5#att15" name="Valor" type="float" db:column="valor"/>
     <Attribute id="ent5#att16" name="Estado" type="string" db:column="estado"/>
@@ -59,7 +59,7 @@
     <Attribute id="ent5#att32" name="Evento_idEvento" type="integer" db:column="evento_idevento"/>
     <Attribute id="ent5#att33" name="Evento_Resultado" type="integer" db:column="evento_resultado"/>
   </Entity>
-  <Entity gr:x="55" gr:y="165" id="ent7" name="Evento" duration="persistent" attributeOrder="ent7#att18 ent7#att19 ent7#att22 ent7#att21 ent7#att25 ent7#att26 ent7#att27 ent7#att28 ent7#att29 ent7#att30" db:database="db1" db:table="evento">
+  <Entity gr:x="55" gr:y="145" id="ent7" name="Evento" duration="persistent" attributeOrder="ent7#att18 ent7#att19 ent7#att22 ent7#att21 ent7#att25 ent7#att26 ent7#att27 ent7#att28 ent7#att29 ent7#att30" db:database="db1" db:table="evento">
     <Attribute id="ent7#att18" key="true" name="idEvento" type="integer" db:column="idevento"/>
     <Attribute id="ent7#att19" name="Estado" type="integer" db:column="estado"/>
     <Attribute id="ent7#att22" name="DiaHora" type="date" db:column="diahora"/>
