@@ -1,0 +1,39 @@
+<Area xmlns:gr="http://www.webratio.com/2006/WebML/Graph" gr:x="535" gr:y="35" id="sv2#area9" name="Menu Administrador" landmark="true" landmarks="sv2#area9#area10 sv2#area9#area11" localized="false">
+  <OperationUnits>
+    <CreateUnit gr:x="535" gr:y="250" id="sv2#area9#cru3" name="Adicionar Utilizador" entity="ent2">
+      <OKLink id="sv2#area9#cru3#oln3" name="OKFlow3" to="sv2#area9#page16#mssu11">
+        <LinkParameter id="sv2#area9#cru3#oln3#par23" name="Utilizador registado com sucesso!_Shown Messages" sourceValue="Utilizador registado com sucesso!" target="sv2#area9#page16#mssu11.shownMessages"/>
+      </OKLink>
+      <KOLink id="sv2#area9#cru3#kln3" name="KOFlow3" to="sv2#area9#page17#mssu10">
+        <LinkParameter id="sv2#area9#cru3#kln3#par24" name="Erro ao registar utilizador!_Shown Messages" sourceValue="Erro ao registar utilizador!" target="sv2#area9#page17#mssu10.shownMessages"/>
+      </KOLink>
+    </CreateUnit>
+    <CreateUnit gr:x="725" gr:y="250" id="sv2#area9#cru1" name="Adicionar Evento" entity="ent7">
+      <OKLink id="sv2#area9#cru1#oln1" name="OKFlow1" to="sv2#area9#page16#mssu11">
+        <LinkParameter id="sv2#area9#cru1#oln1#par13" name="Evento registado com sucesso!_Shown Messages" sourceValue="Evento registado com sucesso!" target="sv2#area9#page16#mssu11.shownMessages"/>
+      </OKLink>
+      <KOLink id="sv2#area9#cru1#kln1" name="KOFlow1" to="sv2#area9#page17#mssu10">
+        <LinkParameter id="sv2#area9#cru1#kln1#par14" name="Erro ao registar evento!_Shown Messages" sourceValue="Erro ao registar evento!" target="sv2#area9#page17#mssu10.shownMessages"/>
+      </KOLink>
+    </CreateUnit>
+    <DeleteUnit gr:x="260" gr:y="365" id="sv2#area9#dlu2" name="Eliminar Utilizador" entity="ent2">
+      <Selector id="sv2#area9#dlu2#su2" defaultPolicy="fill" booleanOperator="and">
+        <KeyCondition id="sv2#area9#dlu2#su2#kcond2" name="KeyCondition2" predicate="in" implied="false"/>
+      </Selector>
+    </DeleteUnit>
+    <DeleteUnit gr:x="275" gr:y="730" id="sv2#area9#dlu3" name="Eliminar Evento" entity="ent7">
+      <Selector id="sv2#area9#dlu3#su3" defaultPolicy="fill" booleanOperator="and">
+        <KeyCondition id="sv2#area9#dlu3#su3#kcond3" name="KeyCondition3" predicate="in" implied="false"/>
+      </Selector>
+    </DeleteUnit>
+    <ModifyUnit gr:x="520" gr:y="625" id="sv2#area9#mfu3" name="Fechar Evento" entity="ent7">
+      <Selector id="sv2#area9#mfu3#su11" defaultPolicy="fill" booleanOperator="and">
+        <KeyCondition id="sv2#area9#mfu3#su11#kcond9" name="KeyCondition9" predicate="in" implied="false"/>
+      </Selector>
+      <OKLink id="sv2#area9#mfu3#oln5" name="OKFlow5" to="sv2#area9#area11#page23" automaticCoupling="true" gr:bendpoints="1,227,476,177;-287,226,178,176"/>
+      <KOLink id="sv2#area9#mfu3#kln4" name="KOFlow4" to="sv2#area9#page1#mssu1">
+        <LinkParameter id="sv2#area9#mfu3#kln4#par3" name="Erro ao fechar evento!_Shown Messages" sourceValue="Erro ao fechar evento!" target="sv2#area9#page1#mssu1.shownMessages"/>
+      </KOLink>
+    </ModifyUnit>
+  </OperationUnits>
+</Area>

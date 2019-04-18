@@ -1,0 +1,50 @@
+<Page xmlns:gr="http://www.webratio.com/2006/WebML/Graph" xmlns:layout="http://www.webratio.com/2006/WebML/Layout" gr:x="0" gr:y="0" id="sv2#area9#area10#page15" name="Utilizadores" landmark="true">
+  <ContentUnits>
+    <EntryUnit gr:x="0" gr:y="0" id="sv2#area9#area10#page15#enu3" name="Registar Utilizador" linkOrder="sv2#area9#area10#page15#enu3#ln3" entity="ent2">
+      <Link id="sv2#area9#area10#page15#enu3#ln3" name="Registar" to="sv2#area9#cru3" type="normal" validate="true">
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par25" name="Email_Email" source="sv2#area9#area10#page15#enu3#fld17" target="sv2#area9#cru3.ent2#att8"/>
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par26" name="EssCoins_EssCoins" source="sv2#area9#area10#page15#enu3#fld21" target="sv2#area9#cru3.ent2#att12"/>
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par27" name="isPremium_isPremium" source="sv2#area9#area10#page15#enu3#fld23" target="sv2#area9#cru3.ent2#att17"/>
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par28" name="Nome_Nome" source="sv2#area9#area10#page15#enu3#fld19" target="sv2#area9#cru3.ent2#att10"/>
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par29" name="Password_Password" source="sv2#area9#area10#page15#enu3#fld18" target="sv2#area9#cru3.ent2#att9"/>
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par30" name="Tipo_Tipo" source="sv2#area9#area10#page15#enu3#fld20" target="sv2#area9#cru3.ent2#att11"/>
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par31" name="Utilizador Object_Utilizador Object" source="entityBean" target="sv2#area9#cru3.entityBeans"/>
+        <LinkParameter id="sv2#area9#area10#page15#enu3#ln3#par32" name="ValorPago_ValorPago" source="sv2#area9#area10#page15#enu3#fld22" target="sv2#area9#cru3.ent2#att13"/>
+      </Link>
+      <Field id="sv2#area9#area10#page15#enu3#fld17" name="Email" type="string" modifiable="true" attribute="ent2#att8"/>
+      <Field id="sv2#area9#area10#page15#enu3#fld18" name="Password" type="string" modifiable="true" attribute="ent2#att9"/>
+      <Field id="sv2#area9#area10#page15#enu3#fld19" name="Nome" type="string" modifiable="true" attribute="ent2#att10"/>
+      <Field id="sv2#area9#area10#page15#enu3#fld20" name="Tipo" type="string" modifiable="true" attribute="ent2#att11"/>
+      <Field id="sv2#area9#area10#page15#enu3#fld21" name="EssCoins" type="float" modifiable="true" attribute="ent2#att12"/>
+      <Field id="sv2#area9#area10#page15#enu3#fld22" name="ValorPago" type="string" modifiable="true" attribute="ent2#att13"/>
+      <Field id="sv2#area9#area10#page15#enu3#fld23" name="isPremium" type="integer" modifiable="true" attribute="ent2#att17"/>
+    </EntryUnit>
+  </ContentUnits>
+  <layout:Grid containerType="grid">
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area9#area10#page15#enu3">
+          <layout:Link link="sv2#area9#area10#page15#enu3#ln3"/>
+          <layout:Field field="sv2#area9#area10#page15#enu3#fld17"/>
+          <layout:Field field="sv2#area9#area10#page15#enu3#fld18"/>
+          <layout:Field field="sv2#area9#area10#page15#enu3#fld19"/>
+          <layout:Field field="sv2#area9#area10#page15#enu3#fld20"/>
+          <layout:Field field="sv2#area9#area10#page15#enu3#fld21"/>
+          <layout:Field field="sv2#area9#area10#page15#enu3#fld22"/>
+          <layout:Field field="sv2#area9#area10#page15#enu3#fld23"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+  </layout:Grid>
+</Page>

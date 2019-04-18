@@ -1,0 +1,53 @@
+<Page xmlns:gr="http://www.webratio.com/2006/WebML/Graph" xmlns:layout="http://www.webratio.com/2006/WebML/Layout" gr:x="275" gr:y="495" id="sv2#area9#page28" name="Atribuir Vencedor">
+  <ContentUnits>
+    <EntryUnit gr:x="5" gr:y="75" id="sv2#area9#page28#enu10" name="Vencedor" entity="ent7" linkOrder="sv2#area9#page28#enu10#ln20" fieldOrder="sv2#area9#page28#enu10#fld36">
+      <Link id="sv2#area9#page28#enu10#ln20" name="Fechar" to="sv2#area9#mfu3" type="normal" validate="true">
+        <LinkParameter id="sv2#area9#page28#enu10#ln20#par60" name="Evento Object_Evento Object" source="entityBean" target="sv2#area9#mfu3.entityBeans"/>
+        <LinkParameter id="sv2#area9#page28#enu10#ln20#par61" name="Key [idEvento]_KeyCondition9 [idEvento]" source="key.ent7#att18" target="sv2#area9#mfu3#su11#kcond9.ent7#att18"/>
+        <LinkParameter id="sv2#area9#page28#enu10#ln20#par62" name="Resultado_Resultado" source="sv2#area9#page28#enu10#fld36" target="sv2#area9#mfu3.ent7#att30"/>
+        <LinkParameter id="sv2#area9#page28#enu10#ln20#par63" name="0_Estado" sourceValue="0" target="sv2#area9#mfu3.ent7#att19"/>
+      </Link>
+      <Field id="sv2#area9#page28#enu10#fld36" attribute="ent7#att30" type="integer" modifiable="true" name="Resultado"/>
+    </EntryUnit>
+    <MultiMessageUnit gr:x="0" gr:y="0" id="sv2#area9#page28#mssu15" name="Regras">
+      <Message xml:space="preserve">Atribua um valor de resultado:  (0) - EMPATE :: (1) - EQUIPA 1 :: (2) - EQUIPA 2</Message>
+    </MultiMessageUnit>
+  </ContentUnits>
+  <layout:Grid containerType="grid">
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area9#page28#enu10">
+          <layout:Link link="sv2#area9#page28#enu10#ln20"/>
+          <layout:Field field="sv2#area9#page28#enu10#fld36"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area9#page28#mssu15"/>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+  </layout:Grid>
+</Page>

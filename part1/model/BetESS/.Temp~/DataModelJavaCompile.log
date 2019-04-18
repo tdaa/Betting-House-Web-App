@@ -1,0 +1,36 @@
+Buildfile: /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/WebRatio/plugins/com.webratio.generator.webapp_7.2.18.201903231300/DataModel/JavaCompile.xml
+
+main:
+    [javac] Compiling 10 source files to /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS/WEB-INF/classes
+    [javac] ----------
+    [javac] 1. ERROR in /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS/WEB-INF/classes/com/webratio/webapp/User.java (at line 7)
+    [javac] 	private java.lang.String _email;
+    [javac] 	                         ^^^^^^
+    [javac] Duplicate field User._email
+    [javac] ----------
+    [javac] 2. ERROR in /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS/WEB-INF/classes/com/webratio/webapp/User.java (at line 9)
+    [javac] 	private java.lang.String _email;
+    [javac] 	                         ^^^^^^
+    [javac] Duplicate field User._email
+    [javac] ----------
+    [javac] 3. ERROR in /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS/WEB-INF/classes/com/webratio/webapp/User.java (at line 21)
+    [javac] 	public java.lang.String getEmail() {
+    [javac] 	                        ^^^^^^^^^^
+    [javac] Duplicate method getEmail() in type User
+    [javac] ----------
+    [javac] 4. ERROR in /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS/WEB-INF/classes/com/webratio/webapp/User.java (at line 25)
+    [javac] 	public void setEmail(java.lang.String _email) {
+    [javac] 	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    [javac] Duplicate method setEmail(String) in type User
+    [javac] ----------
+    [javac] 5. ERROR in /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS/WEB-INF/classes/com/webratio/webapp/User.java (at line 29)
+    [javac] 	public java.lang.String getEmail() {
+    [javac] 	                        ^^^^^^^^^^
+    [javac] Duplicate method getEmail() in type User
+    [javac] ----------
+    [javac] 6. ERROR in /Users/gcsousa/Documents/WebRatio_Platform_University_Student_Edition_7.2.18.MacOSX/Tomcat/webapps/BetESS/WEB-INF/classes/com/webratio/webapp/User.java (at line 33)
+    [javac] 	public void setEmail(java.lang.String _email) {
+    [javac] 	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    [javac] Duplicate method setEmail(String) in type User
+    [javac] ----------
+    [javac] 6 problems (6 errors)

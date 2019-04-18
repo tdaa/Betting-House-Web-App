@@ -1,0 +1,12 @@
+<Area xmlns:gr="http://www.webratio.com/2006/WebML/Graph" id="sv2#area8" name="Menu Apostador" landmarks="sv2#area8#page24" landmark="true" gr:x="20" gr:y="180">
+  <OperationUnits>
+    <CreateUnit gr:x="280" gr:y="265" id="sv2#area8#cru2" name="Adicionar Aposta" entity="ent5">
+      <OKLink id="sv2#area8#cru2#oln2" name="OKFlow2" to="sv2#area8#page19#mssu13">
+        <LinkParameter id="sv2#area8#cru2#oln2#par15" name="Aposta registada com sucesso!_Shown Messages" sourceValue="Aposta registada com sucesso!" target="sv2#area8#page19#mssu13.shownMessages"/>
+      </OKLink>
+      <KOLink id="sv2#area8#cru2#kln2" name="KOFlow2" to="sv2#area8#page14#mssu9">
+        <LinkParameter id="sv2#area8#cru2#kln2#par16" name="Erro ao registar aposta!_Shown Messages" sourceValue="Erro ao registar aposta!" target="sv2#area8#page14#mssu9.shownMessages"/>
+      </KOLink>
+    </CreateUnit>
+  </OperationUnits>
+</Area>

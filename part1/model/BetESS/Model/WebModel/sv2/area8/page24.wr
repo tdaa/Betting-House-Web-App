@@ -1,0 +1,86 @@
+<Page xmlns:gr="http://www.webratio.com/2006/WebML/Graph" xmlns:layout="http://www.webratio.com/2006/WebML/Layout" id="sv2#area8#page24" name="Apostar" landmark="true" gr:x="10" gr:y="270">
+  <ContentUnits>
+    <EntryUnit id="sv2#area8#page24#enu7" name="Criar Aposta" linkOrder="sv2#area8#page24#enu7#ln13" gr:x="0" gr:y="0" fieldOrder="sv2#area8#page24#enu7#fld30 sv2#area8#page24#enu7#fld32 sv2#area8#page24#enu7#fld33 sv2#area8#page24#enu7#fld37" entity="ent5">
+      <Link id="sv2#area8#page24#enu7#ln13" name="Registar" to="sv2#area8#cru2" type="normal" validate="true">
+        <LinkParameter id="sv2#area8#page24#enu7#ln13#par53" name="Aposta Object_Aposta Object" source="entityBean" target="sv2#area8#cru2.entityBeans"/>
+        <LinkParameter id="sv2#area8#page24#enu7#ln13#par55" name="Evento_idEvento_Evento_idEvento" source="sv2#area8#page24#enu7#fld33" target="sv2#area8#cru2.ent5#att32"/>
+        <LinkParameter id="sv2#area8#page24#enu7#ln13#par56" name="Key [idAposta]_idAposta" source="key.ent5#att14" target="sv2#area8#cru2.ent5#att14"/>
+        <LinkParameter id="sv2#area8#page24#enu7#ln13#par57" name="Utilizador_Email_Utilizador_Email" source="sv2#area8#page24#enu7#fld32" target="sv2#area8#cru2.ent5#att31"/>
+        <LinkParameter id="sv2#area8#page24#enu7#ln13#par58" name="Valor_Valor" source="sv2#area8#page24#enu7#fld30" target="sv2#area8#cru2.ent5#att15"/>
+        <LinkParameter id="sv2#area8#page24#enu7#ln13#par64" name="Evento_Resultado_Evento_Resultado" source="sv2#area8#page24#enu7#fld37" target="sv2#area8#cru2.ent5#att33"/>
+      </Link>
+      <Field id="sv2#area8#page24#enu7#fld30" name="Valor" type="float" modifiable="true" attribute="ent5#att15"/>
+      <Field id="sv2#area8#page24#enu7#fld32" name="Utilizador_Email" type="string" modifiable="true" attribute="ent5#att31"/>
+      <Field id="sv2#area8#page24#enu7#fld33" name="Evento_idEvento" type="integer" modifiable="true" attribute="ent5#att32"/>
+      <Field id="sv2#area8#page24#enu7#fld37" name="Evento_Resultado" type="integer" modifiable="true" attribute="ent5#att33"/>
+    </EntryUnit>
+    <IndexUnit id="sv2#area8#page24#inu12" name="Lista de Eventos para Aposta" gr:x="0" gr:y="100" entity="ent7" displayAttributes="ent7#att18 ent7#att22 ent7#att21 ent7#att25 ent7#att26 ent7#att27 ent7#att28 ent7#att29">
+      <Selector id="sv2#area8#page24#inu12#su9" defaultPolicy="fill" booleanOperator="and">
+        <AttributesCondition id="sv2#area8#page24#inu12#su9#acond2" name="AttCondition1" predicate="eq" booleanOperator="or" implied="false" attributes="ent7#att19" value="1" ignoreCase="false"/>
+      </Selector>
+    </IndexUnit>
+  </ContentUnits>
+  <layout:Grid containerType="grid">
+    <layout:Row>
+      <layout:Cell colspan="12"/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area8#page24#enu7">
+          <layout:Link link="sv2#area8#page24#enu7#ln13"/>
+          <layout:Field field="sv2#area8#page24#enu7#fld30"/>
+          <layout:Field field="sv2#area8#page24#enu7#fld32"/>
+          <layout:Field field="sv2#area8#page24#enu7#fld33"/>
+          <layout:Field field="sv2#area8#page24#enu7#fld37"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area8#page24#inu12">
+          <layout:Attribute attribute="ent7#att18"/>
+          <layout:Attribute attribute="ent7#att22"/>
+          <layout:Attribute attribute="ent7#att21"/>
+          <layout:Attribute attribute="ent7#att25"/>
+          <layout:Attribute attribute="ent7#att26"/>
+          <layout:Attribute attribute="ent7#att27"/>
+          <layout:Attribute attribute="ent7#att28"/>
+          <layout:Attribute attribute="ent7#att29"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+  </layout:Grid>
+</Page>

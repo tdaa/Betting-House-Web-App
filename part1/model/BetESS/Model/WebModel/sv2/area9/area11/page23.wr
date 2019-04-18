@@ -1,0 +1,97 @@
+<Page xmlns:gr="http://www.webratio.com/2006/WebML/Graph" xmlns:layout="http://www.webratio.com/2006/WebML/Layout" gr:x="0" gr:y="155" id="sv2#area9#area11#page23" name="Apostas" landmark="true">
+  <ContentUnits>
+    <IndexUnit gr:x="0" gr:y="100" id="sv2#area9#area11#page23#inu5" name="Eventos Abertos" linkOrder="sv2#area9#area11#page23#inu5#ln8 sv2#area9#area11#page23#inu5#ln19" entity="ent7" displayAttributes="ent7#att18 ent7#att19 ent7#att22 ent7#att21 ent7#att25 ent7#att26 ent7#att27 ent7#att28 ent7#att29 ent7#att30">
+      <Link id="sv2#area9#area11#page23#inu5#ln8" name="Eliminar" to="sv2#area9#dlu3" automaticCoupling="true" type="normal" validate="true"/>
+      <Link id="sv2#area9#area11#page23#inu5#ln19" name="Fechar" to="sv2#area9#page28#enu10" automaticCoupling="true" type="normal" validate="true"/>
+      <Selector id="sv2#area9#area11#page23#inu5#su12" defaultPolicy="fill" booleanOperator="and">
+        <AttributesCondition id="sv2#area9#area11#page23#inu5#su12#acond3" name="AttCondition3" predicate="eq" booleanOperator="or" implied="false" attributes="ent7#att19" value="1"/>
+      </Selector>
+    </IndexUnit>
+    <IndexUnit id="sv2#area9#area11#page23#inu9" name="Apostas" gr:x="0" gr:y="0" entity="ent5" displayAttributes="ent5#att14 ent5#att15 ent5#att31 ent5#att32 ent5#att33"/>
+    <IndexUnit gr:x="0" gr:y="205" id="sv2#area9#area11#page23#inu13" name="Eventos Fechados" entity="ent7" displayAttributes="ent7#att18 ent7#att19 ent7#att22 ent7#att21 ent7#att25 ent7#att26 ent7#att27 ent7#att28 ent7#att29 ent7#att30">
+      <Selector id="sv2#area9#area11#page23#inu13#su13" defaultPolicy="fill" booleanOperator="and">
+        <AttributesCondition id="sv2#area9#area11#page23#inu13#su13#acond4" name="AttCondition4" predicate="eq" booleanOperator="or" implied="false" attributes="ent7#att19" value="0"/>
+      </Selector>
+    </IndexUnit>
+  </ContentUnits>
+  <layout:Grid containerType="grid">
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area9#area11#page23#inu5">
+          <layout:Attribute attribute="ent7#att18"/>
+          <layout:Attribute attribute="ent7#att19"/>
+          <layout:Attribute attribute="ent7#att22"/>
+          <layout:Attribute attribute="ent7#att21"/>
+          <layout:Attribute attribute="ent7#att25"/>
+          <layout:Attribute attribute="ent7#att26"/>
+          <layout:Attribute attribute="ent7#att27"/>
+          <layout:Attribute attribute="ent7#att28"/>
+          <layout:Attribute attribute="ent7#att29"/>
+          <layout:Attribute attribute="ent7#att30"/>
+          <layout:Link link="sv2#area9#area11#page23#inu5#ln8"/>
+          <layout:Link link="sv2#area9#area11#page23#inu5#ln19"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area9#area11#page23#inu9">
+          <layout:Attribute attribute="ent5#att14"/>
+          <layout:Attribute attribute="ent5#att15"/>
+          <layout:Attribute attribute="ent5#att31"/>
+          <layout:Attribute attribute="ent5#att32"/>
+          <layout:Attribute attribute="ent5#att33"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+    <layout:Row>
+      <layout:Cell colspan="12">
+        <layout:Unit unitId="sv2#area9#area11#page23#inu13">
+          <layout:Attribute attribute="ent7#att18"/>
+          <layout:Attribute attribute="ent7#att19"/>
+          <layout:Attribute attribute="ent7#att22"/>
+          <layout:Attribute attribute="ent7#att21"/>
+          <layout:Attribute attribute="ent7#att25"/>
+          <layout:Attribute attribute="ent7#att26"/>
+          <layout:Attribute attribute="ent7#att27"/>
+          <layout:Attribute attribute="ent7#att28"/>
+          <layout:Attribute attribute="ent7#att29"/>
+          <layout:Attribute attribute="ent7#att30"/>
+        </layout:Unit>
+      </layout:Cell>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+      <layout:Cell/>
+    </layout:Row>
+  </layout:Grid>
+</Page>
