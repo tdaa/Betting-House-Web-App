@@ -1,9 +1,9 @@
-const Categoria = require('../models/categoria');
+var models = require('../models');
 const Categorias = module.exports;
 
 Categorias.listar = function() {
-    return Categoria.findAll({ 
-        attributes: ['Designacao'],
+    return models.Categoria.findAll({
+        attributes: ['idCategoria', 'Designacao'],
         raw: true // Permite obter object JSON.
     });
 }
