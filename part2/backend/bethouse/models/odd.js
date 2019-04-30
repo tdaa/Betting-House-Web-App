@@ -1,13 +1,13 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-    var Categoria = sequelize.define('Categoria', 
+    var Odd = sequelize.define('Odd', 
         {
-            idCategoria: {
+            idOdd: {
                 type: DataTypes.INTEGER,
                 primaryKey: true
             },
-            Designacao: DataTypes.STRING,
+            Valor: DataTypes.DOUBLE
         },
         {
             // Evita que sejam criados os campos "createdAt" e "updatedAt".
@@ -15,5 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    return Categoria;
+    Odd.associate = function(models) {
+        models.Odd
+            .belongsToMany(models.Resultado, { 
+                through: models.Resultado_has_Odd 
+            });
+    }
+
+    return Odd;
 };
