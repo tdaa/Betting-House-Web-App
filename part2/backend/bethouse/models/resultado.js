@@ -15,10 +15,16 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
+    /* Relações */
     Resultado.associate = function(models) {
         models.Resultado
             .belongsToMany(models.Odd, { 
                 through: models.Resultado_has_Odd 
+            });
+
+        models.Resultado
+            .belongsToMany(models.Evento, { 
+                through: models.Evento_has_Resultado
             });
     }
 
