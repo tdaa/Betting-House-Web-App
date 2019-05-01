@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
+    /* Relações */
     Odd.associate = function(models) {
         models.Odd
             .belongsToMany(models.Resultado, { 

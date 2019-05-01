@@ -21,10 +21,16 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
+    /* Relações */
     Evento.associate = function(models) {
         models.Evento
             .belongsTo(models.Categoria, { 
                 foreignKey: 'idCategoria', targetKey: 'idCategoria' 
+            });
+
+        models.Evento
+            .belongsToMany(models.Resultado, { 
+                through: models.Evento_has_Resultado
             });
     }
 
