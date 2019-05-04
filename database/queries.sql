@@ -38,19 +38,24 @@ insert into Odds (idOdd, Valor)
         (4, 1.9),
         (5, 3.7);
 
-insert into Resultado_has_Odds (EventoIdEvento, OddidOdd, ResultadoidResultado)
+insert into Resultado_has_Odds (id, EventoIdEvento, OddidOdd, ResultadoidResultado)
 	values
-		(2, 5, 1),
-        (2, 3, 3);
+		(1, 1, 1, 1),
+        (2, 1, 3, 3),
+        (3, 2, 5, 1),
+        (4, 2, 3, 2);
         
 insert into Eventos (idEvento, Estado, DiaHora, idCategoria)
 	values
+		(1, -1, '2019-05-01 21:30:05', 1),
 		(2, -1, '2019-05-01 13:30:05', 1);
         
 insert into Evento_has_Resultados (EventoIdEvento, ResultadoIdResultado)
 	values
+		(1, 1),
 		(2, 1),
-        (2, 2);
+        (2, 2),
+        (1, 3);
 
 
 ##### QUERIES #####
