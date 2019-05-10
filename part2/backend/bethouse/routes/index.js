@@ -35,26 +35,27 @@ router.get('/eventos', async function(req, res) {
             
             for (let i = 0; i < dadosObj.length; i++) {
                 var evento = dadosObj[i];
-                var idEv = '' + evento.idEvento;
-                if (eventosObj[idEv]) {
-                    eventosObj[idEv]['Participante' + (i + 1)] = evento['Designacao'];
-                    eventosObj[idEv]['Odd' + (i + 1)] = evento['Valor'];
-                } else {
-                    const Participante = 'Participante' + (i + 1);
-                    const Odd = 'Odd' + (i + 1);
+                var idEv   = '' + evento.idEvento;
+                var idRes  = '' + evento.idResultado;
+                var idOdd  = '' + evento.idOdd;
 
+                if (eventosObj[idEv]) {
+                    eventosObj[idEv]['participantes'][idRes] = evento['ResDesig'];
+                    eventosObj[idEv]['odds'][idOdd] = evento['Valor'];
+                } else {
                     var infoObj = `{
                         "Estado": ${evento['Estado']},
                         "DiaHora": "${evento['DiaHora']}",
                         "idCategoria": ${evento['idCategoria']},
-                        "${Participante}": "${evento['Designacao']}",
-                        "${Odd}": ${evento['Valor']}
+                        "Categoria": "${evento['CatDesig']}",
+                        "participantes": { "${idRes}": "${evento['ResDesig']}" },
+                        "odds": { "${idOdd}": ${evento['Valor']} }
                     }`;
 
                     eventosObj[idEv] = JSON.parse(infoObj);
                 }
             }
-
+            
             res.jsonp(eventosObj);
         })
         .catch(err => res.status(500).send('Erro na listagem: ' + err));
@@ -71,12 +72,18 @@ router.get('/eventos/:idEvento', async function(req, res) {
                 idEvento: infoObj[0].idEvento,
                 Estado: infoObj[0].Estado,
                 DiaHora: infoObj[0].DiaHora,
-                idCategoria: infoObj[0].idCategoria
+                idCategoria: infoObj[0].idCategoria,
+                Categoria: infoObj[0].CatDesig,
+                participantes: {},
+                odds: {}
             }
 
             for (let i = 0; i < infoObj.length; i++) {
-                infoEvento['Participante' + (i + 1)] = infoObj[i].Designacao;
-                infoEvento['Odd' + (i + 1)] = infoObj[i].Valor;
+                var idRes = '' + infoObj[i].idResultado;
+                var idOdd = '' + infoObj[i].idOdd;
+
+                infoEvento['participantes'][idRes] = infoObj[i].ResDesig;
+                infoEvento['odds'][idOdd] = infoObj[i].Valor;
             }
 
             res.jsonp(infoEvento);

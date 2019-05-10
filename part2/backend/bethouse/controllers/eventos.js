@@ -7,7 +7,8 @@ Eventos.listar = async function() {
         attributes: ['idEvento', 'Estado', 'DiaHora', 'idCategoria'],
         raw: true // Permite obter objecto JSON.
     }); */
-    let query = `SELECT Eventos.*, Categoria.Designacao, Resultados.Designacao, Odds.Valor
+    let query = `SELECT Eventos.*, Categoria.Designacao AS CatDesig, 
+                 Resultados.idResultado, Resultados.Designacao AS ResDesig, Odds.*
                     FROM Eventos
                     JOIN Categoria 
                         ON Categoria.idCategoria = Eventos.idCategoria
@@ -26,7 +27,8 @@ Eventos.listar = async function() {
 }
 
 Eventos.getInfoEvento = async function(idEv) {
-    let query = `SELECT Eventos.*, Categoria.Designacao, Resultados.Designacao, Odds.Valor
+    let query = `SELECT Eventos.*, Categoria.Designacao AS CatDesig, 
+                 Resultados.idResultado, Resultados.Designacao AS ResDesig, Odds.*
                     FROM Eventos
                     JOIN Categoria 
                         ON Categoria.idCategoria = Eventos.idCategoria
