@@ -37,11 +37,10 @@ router.get('/eventos', async function(req, res) {
                 var evento = dadosObj[i];
                 var idEv   = '' + evento.idEvento;
                 var idRes  = '' + evento.idResultado;
-                var idOdd  = '' + evento.idOdd;
 
                 if (eventosObj[idEv]) {
                     eventosObj[idEv]['participantes'][idRes] = evento['ResDesig'];
-                    eventosObj[idEv]['odds'][idOdd] = evento['Valor'];
+                    eventosObj[idEv]['odds'][idRes] = evento['Valor'];
                 } else {
                     var infoObj = `{
                         "Estado": ${evento['Estado']},
@@ -49,13 +48,13 @@ router.get('/eventos', async function(req, res) {
                         "idCategoria": ${evento['idCategoria']},
                         "Categoria": "${evento['CatDesig']}",
                         "participantes": { "${idRes}": "${evento['ResDesig']}" },
-                        "odds": { "${idOdd}": ${evento['Valor']} }
+                        "odds": { "${idRes}": ${evento['Valor']} }
                     }`;
 
                     eventosObj[idEv] = JSON.parse(infoObj);
                 }
             }
-            
+
             res.jsonp(eventosObj);
         })
         .catch(err => res.status(500).send('Erro na listagem: ' + err));
@@ -80,10 +79,9 @@ router.get('/eventos/:idEvento', async function(req, res) {
 
             for (let i = 0; i < infoObj.length; i++) {
                 var idRes = '' + infoObj[i].idResultado;
-                var idOdd = '' + infoObj[i].idOdd;
 
                 infoEvento['participantes'][idRes] = infoObj[i].ResDesig;
-                infoEvento['odds'][idOdd] = infoObj[i].Valor;
+                infoEvento['odds'][idRes] = infoObj[i].Valor;
             }
 
             res.jsonp(infoEvento);
