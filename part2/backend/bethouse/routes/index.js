@@ -1,13 +1,34 @@
-var express    = require('express');
-var Categorias = require('../controllers/categorias');
-var Resultados = require('../controllers/resultados');
-var Eventos    = require('../controllers/eventos');
-var Odds       = require('../controllers/odds');
-var router     = express.Router();
+var
+    express      = require('express'),
+    Utilizadores = require('../controllers/utilizadores'),
+    Categorias   = require('../controllers/categorias'),
+    Resultados   = require('../controllers/resultados'),
+    Eventos      = require('../controllers/eventos'),
+    Odds         = require('../controllers/odds'),
+    router       = express.Router();
 
+
+// Middleware que verifica se o utilizador tem login no sistema.
+const authMiddleware = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        res.status(401).send('You are not authenticated!');
+    } else {
+        return next();
+    }
+}
+
+/* Obtém utilizador em sessão. */
+router.get('/session', authMiddleware, function(req, res) {
+    Utilizadores.getUserByID(req.session.passport.user)
+        .then(dados => {
+            let user = JSON.parse(JSON.stringify(dados[0]));
+            res.jsonp(user);
+        })
+        .catch(err => res.status(500).send('Erro ao obter utilizador: ' + err));
+});
 
 /* Listar Categorias. */
-router.get('/categorias', function(req, res) {
+router.get('/categorias', authMiddleware, function(req, res) {
     Categorias.listar()
         .then(dados => {
             console.log(dados);
