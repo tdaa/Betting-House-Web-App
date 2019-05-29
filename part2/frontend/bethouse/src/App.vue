@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <router-view/>
     <Navbar></Navbar>
+    <router-view/>
+    <!--
     <Subcategories></Subcategories>
     <div class="col-lg-12">
       <div class="row">
         <Categories></Categories>
-        <div class="col-sm-7">
-          <Events></Events>
-        </div>
       </div>
     </div>
+    -->
   </div>
 </template>
 
