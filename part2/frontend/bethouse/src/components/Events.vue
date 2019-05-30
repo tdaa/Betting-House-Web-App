@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="row">
     <b-table :fields="fields" :items="items">
       <!-- A virtual column -->
       <template slot="index" slot-scope="data">
