@@ -15,7 +15,7 @@ export default new Router({
       component: Events
     },
     {
-      path: '/login',
+      path: '/',
       name: 'login',
       component: Login
     },
@@ -25,7 +25,7 @@ export default new Router({
       component: SignUp
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: HomePage
     }

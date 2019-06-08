@@ -4,7 +4,7 @@
       <h3>Sign In</h3>
       <input type="text" v-model="email" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
-      <button @click="login">Login</button>
+      <button v-on:click="login">Login</button>
       <p>You don't have an account ? You can <router-link to="/signup">create one</router-link></p>
     </div>
   </div>
@@ -22,25 +22,19 @@ export default {
     }
   },
   methods: {
-    login: (e) => {
-      e.preventDefault()
-      let email = e.target.elements.email.value
-      let password = e.target.elements.password.value
-      let login = () => {
-        let data = {
-          email: email,
-          password: password
-        }
-        axios.post('/api/login', data)
-          .then((response) => {
-            console.log('Logged in')
-            router.push('/categories')
-          })
-          .catch((errors) => {
-            console.log('Cannot login')
-          })
+    login () {
+      let data = {
+        email: this.email,
+        password: this.password
       }
-      login()
+      axios.post('http://localhost:2727/login/', data)
+        .then(response => {
+          console.log(response)
+          router.push('/')
+        })
+        .catch(errors => {
+          console.log('Cannot login')
+        })
     }
   }
 }
