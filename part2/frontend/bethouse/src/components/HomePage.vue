@@ -106,9 +106,9 @@ export default {
   methods: {
     getCategories () {
       axios
-        .get('http://localhost:2727/categorias')
+        .get('http://localhost:2727/categorias', { withCredentials: true })
         // eslint-disable-next-line no-return-assign
-        .then(res => this.categorias = res.data)
+        .then(res => { console.log(res.data); this.categorias = res.data })
         .catch(err => console.log(err))
     },
     getEventos: function () {
