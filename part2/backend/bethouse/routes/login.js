@@ -9,7 +9,6 @@ router.get('/session', (req, res, next) => {
 
 router.post('/processLogin', (req, res, next) => {
     console.log(req.body);
-    //let utilizador = JSON.parse(Object.keys(req.body)[0]);
 
     passport.authenticate('local', (err, utilizador, info) => {
         if (err) {
