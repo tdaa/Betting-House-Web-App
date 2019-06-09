@@ -2,7 +2,7 @@
   <div class="container" style="text-align: center">
     <div class="login">
       <h3>Sign In</h3>
-      <input type="text" v-model="email" placeholder="Email"><br>
+      <input type="text" v-model="username" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
       <button v-on:click="login">Login</button>
       <p>You don't have an account ? You can <router-link to="/signup">create one</router-link></p>
@@ -17,23 +17,34 @@ export default {
   name: 'login',
   data () {
     return {
-      email: '',
+      username: '',
       password: ''
     }
   },
+  created () {
+    this.getSession()
+  },
   methods: {
-    login () {
-      let data = {
-        email: this.email,
-        password: this.password
-      }
-      axios.post('http://localhost:2727/login/', data)
+    getSession () {
+      axios.get('http://localhost:2727/session')
         .then(response => {
           console.log(response)
-          router.push('/')
+        })
+        .catch(err => console.log(err))
+    },
+
+    login () {
+      let data = {
+        username: this.username,
+        password: this.password
+      }
+
+      axios.post('http://localhost:2727/login/processLogin', data)
+        .then(response => {
+          router.push('/home')
         })
         .catch(errors => {
-          console.log('Cannot login')
+          console.log(errors)
         })
     }
   }

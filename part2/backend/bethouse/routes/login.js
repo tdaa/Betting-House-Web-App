@@ -2,7 +2,15 @@ var express = require('express');
 var passport = require('passport')
 var router = express.Router();
 
+router.get('/session', (req, res, next) => {
+    console.log(req.user);
+    res.send(req.user);
+});
+
 router.post('/processLogin', (req, res, next) => {
+    console.log(req.body);
+    //let utilizador = JSON.parse(Object.keys(req.body)[0]);
+
     passport.authenticate('local', (err, utilizador, info) => {
         if (err) {
             return next(err);

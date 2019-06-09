@@ -8,11 +8,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import axios from 'axios'
 
 Vue.use(Vuetify)
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
+axios.defaults.withCredentials = true
 
 /* eslint-disable no-new */
 new Vue({

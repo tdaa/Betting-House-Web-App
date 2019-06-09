@@ -2,7 +2,7 @@
   <div class="container" style="text-align: center">
     <div class="sign-up">
       <p>Let's create a new account !</p>
-      <input type="text" v-model="email" placeholder="Email"><br>
+      <input type="text" v-model="username" placeholder="Email"><br>
       <input type="password" v-model="password" placeholder="Password"><br>
       <button class="btn btn-outline-dark" @click="signUp">Sign Up</button>
       <span>or go back to <router-link to="/login">login</router-link>.</span>
@@ -15,7 +15,7 @@ export default {
   name: 'signUp',
   data () {
     return {
-      email: '',
+      username: '',
       password: ''
     }
   },
