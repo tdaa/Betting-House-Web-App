@@ -2,11 +2,6 @@ var models = require('../models');
 const Eventos = module.exports;
 
 Eventos.listar = async function() {
-    /*
-    return models.Evento.findAll({
-        attributes: ['idEvento', 'Estado', 'DiaHora', 'idCategoria'],
-        raw: true // Permite obter objecto JSON.
-    }); */
     let query = `SELECT Eventos.*, Categoria.Designacao AS CatDesig, 
                  Resultados.idResultado, Resultados.Designacao AS ResDesig, Odds.*
                     FROM Eventos

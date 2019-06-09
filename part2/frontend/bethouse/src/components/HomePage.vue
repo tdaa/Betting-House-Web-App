@@ -70,8 +70,11 @@
     </div>
   </div>
 </template>
+
 <script>
+// import router from '../router'
 import axios from 'axios'
+
 export default {
   name: 'HomePage',
   data () {
@@ -108,7 +111,7 @@ export default {
       axios
         .get('http://localhost:2727/categorias', { withCredentials: true })
         // eslint-disable-next-line no-return-assign
-        .then(res => { console.log(res.data); this.categorias = res.data })
+        .then(res => this.categorias = res.data)
         .catch(err => console.log(err))
     },
     getEventos: function () {
@@ -161,6 +164,20 @@ export default {
       }
     },
     submeterAposta () {
+      // NOTA: Preencher 'data' com informação no boletim!
+      let data = {
+        ids_eventos: [],
+        odds_apostadas: [],
+        valor: 10
+      }
+
+      axios.post('http://localhost:2727/apostar', data)
+        .then(response => {
+          this.items = []
+        })
+        .catch(errors => {
+          console.log(errors)
+        })
     },
     removerEventoDeAposta (row) {
       this.items.pop(row.index)

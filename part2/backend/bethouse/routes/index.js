@@ -125,4 +125,10 @@ router.get('/odds/:id', function(req, res) {
         .catch(err => res.status(500).send('Erro na listagem: ' + err));
 });
 
+/* Cria uma Aposta nova para um determinado Utilizador. */
+router.post('/apostar', authMiddleware, function(req, res, next) {
+    console.log('Body Data: ' + JSON.stringify(req.body));
+    res.jsonp([]);
+});
+
 module.exports = router;

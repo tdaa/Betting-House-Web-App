@@ -13,7 +13,7 @@
 
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-                <b-nav-item style="font-size: 20px"><router-link style="color: silver" to="/login">Login</router-link></b-nav-item>
+                <b-nav-item style="font-size: 20px"><router-link style="color: silver" to="/">Login</router-link></b-nav-item>
                 <b-nav-item-dropdown right>
                     <!-- Using button-content slot -->
                     <template slot="button-content"><em style="font-size: 20px">User</em></template>
@@ -34,6 +34,8 @@ export default {
   name: 'Navbar',
   methods: {
     signout () {
+      localStorage.clear()
+
       axios.get('http://localhost:2727/logout')
         .then(response => {
           console.log(response)
