@@ -32,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
             .belongsToMany(models.Resultado, { 
                 through: models.Evento_has_Resultado
             });
+        
+        models.Evento
+            .belongsToMany(models.Aposta, { 
+                through: models.Evento_in_Aposta
+            });
     }
 
     return Evento;
