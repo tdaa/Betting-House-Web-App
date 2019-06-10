@@ -12,17 +12,33 @@ module.exports = (sequelize, DataTypes) => {
             },
             Email: {
                 type: DataTypes.STRING,
+                allowNull: false,
                 unique: true
             },
-            Password: DataTypes.STRING,
-            Nome: DataTypes.STRING,
-            Tipo: DataTypes.CHAR(1),
-            EssCoins: DataTypes.DOUBLE,
+            Password: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            Nome: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            Tipo: {
+                type: DataTypes.CHAR(1),
+                allowNull: false
+            },
+            EssCoins: {
+                type: DataTypes.DOUBLE,
+                allowNull: false
+            },
             ValorPago: {
                 type: DataTypes.DOUBLE,
                 allowNull: true
             },
-            isPremium: DataTypes.TINYINT
+            isPremium: {
+                type: DataTypes.TINYINT,
+                allowNull: false
+            }
         },
         {
             // Evita que sejam criados os campos "createdAt" e "updatedAt".

@@ -4,7 +4,6 @@ var
     Categorias   = require('../controllers/categorias'),
     Resultados   = require('../controllers/resultados'),
     Eventos      = require('../controllers/eventos'),
-    Odds         = require('../controllers/odds'),
     router       = express.Router();
 
 
@@ -52,6 +51,7 @@ router.get('/eventos', async function(req, res) {
     await Eventos.listar()
         .then(dados => {
             var dadosObj = JSON.parse(JSON.stringify(dados[0]));
+            console.log(dadosObj);
             var eventosObj = {};
             
             for (let i = 0; i < dadosObj.length; i++) {
@@ -61,7 +61,7 @@ router.get('/eventos', async function(req, res) {
 
                 if (eventosObj[idEv]) {
                     eventosObj[idEv]['participantes'][idRes] = evento['ResDesig'];
-                    eventosObj[idEv]['odds'][idRes] = evento['Valor'];
+                    eventosObj[idEv]['odds'][idRes] = evento['Odd'];
                 } else {
                     var infoObj = `{
                         "Estado": ${evento['Estado']},
@@ -69,7 +69,7 @@ router.get('/eventos', async function(req, res) {
                         "idCategoria": ${evento['idCategoria']},
                         "Categoria": "${evento['CatDesig']}",
                         "participantes": { "${idRes}": "${evento['ResDesig']}" },
-                        "odds": { "${idRes}": ${evento['Valor']} }
+                        "odds": { "${idRes}": ${evento['Odd']} }
                     }`;
 
                     eventosObj[idEv] = JSON.parse(infoObj);
@@ -86,7 +86,7 @@ router.get('/eventos/:idEvento', async function(req, res) {
     await Eventos.getInfoEvento(req.params.idEvento)
         .then(info => {
             var infoObj = JSON.parse(JSON.stringify(info[0]));
-            
+
             /* Objeto a Devolver. */
             var infoEvento = {
                 idEvento: infoObj[0].idEvento,
@@ -102,27 +102,12 @@ router.get('/eventos/:idEvento', async function(req, res) {
                 var idRes = '' + infoObj[i].idResultado;
 
                 infoEvento['participantes'][idRes] = infoObj[i].ResDesig;
-                infoEvento['odds'][idRes] = infoObj[i].Valor;
+                infoEvento['odds'][idRes] = infoObj[i].Odd;
             }
 
             res.jsonp(infoEvento);
         })
         .catch(errEv => res.status(500).send('Erro na listagem: ' + errEv));
-});
-
-/* Listar todas as Odds. */
-router.get('/odds', function(req, res) {
-    res.jsonp([]);
-});
-
-/* Listar as Odds de uma equipa. */
-router.get('/odds/:id', function(req, res) {
-    Odds.getOdds(req.params.id)
-        .then(dados => {
-            console.log(dados);
-            res.jsonp(dados[0]);
-        })
-        .catch(err => res.status(500).send('Erro na listagem: ' + err));
 });
 
 /* Cria uma Aposta nova para um determinado Utilizador. */
