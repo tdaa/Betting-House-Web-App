@@ -1,4 +1,4 @@
-##### SELECTS #####
+###### SELECTS ######
 
 select * from Utilizadors;
 
@@ -11,7 +11,7 @@ select * from Eventos;
 select * from Evento_has_Resultados;
 
 
-##### INSERTS #####
+###### INSERTS ######
 
 insert into Utilizadors (id, Email, Password, Nome, Tipo, EssCoins, ValorPago, isPremium)
 	values 
