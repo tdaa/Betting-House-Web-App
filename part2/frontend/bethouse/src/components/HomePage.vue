@@ -72,7 +72,7 @@
 </template>
 
 <script>
-// import router from '../router'
+import router from '../router'
 import axios from 'axios'
 
 export default {
@@ -103,8 +103,16 @@ export default {
     }
   },
   created () {
-    this.getCategories()
-    this.getEventos()
+    axios.get('http://localhost:2727/session')
+      .then(response => {
+        if (response.data) {
+          this.getCategories()
+          this.getEventos()
+        } else {
+          router.push('/')
+        }
+      })
+      .catch(err => console.log(err))
   },
   methods: {
     getCategories () {
