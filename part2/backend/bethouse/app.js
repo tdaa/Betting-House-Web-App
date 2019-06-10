@@ -10,6 +10,7 @@ var cors = require('cors');
 
 /* Rotas do Sistema. */
 var indexRouter = require('./routes/index');
+var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 
@@ -55,6 +56,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 

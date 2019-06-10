@@ -34,11 +34,8 @@ export default {
   name: 'Navbar',
   methods: {
     signout () {
-      localStorage.clear()
-
       axios.get('http://localhost:2727/logout')
         .then(response => {
-          console.log(response)
           router.push('/')
         })
         .catch(err => console.log(err))

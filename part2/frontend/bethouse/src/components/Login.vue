@@ -26,9 +26,15 @@ export default {
   },
   methods: {
     getSession () {
-      if (localStorage.getItem('session')) {
-        router.push('/home')
-      }
+      axios.get('http://localhost:2727/session')
+        .then(response => {
+          if (response.data) {
+            router.push('/home')
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
 
     login () {
@@ -39,12 +45,9 @@ export default {
 
       axios.post('http://localhost:2727/login/processLogin', data)
         .then(response => {
-          localStorage.setItem('session', JSON.stringify(response.data))
           router.push('/home')
         })
-        .catch(errors => {
-          console.log(errors)
-        })
+        .catch(errors => console.log(errors))
     }
   }
 }

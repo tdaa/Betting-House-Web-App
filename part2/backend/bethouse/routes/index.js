@@ -10,7 +10,7 @@ var
 // Middleware que verifica se o utilizador tem login no sistema.
 const authMiddleware = (req, res, next) => {
     if (!req.isAuthenticated()) {
-        res.status(401).send('You are not authenticated!');
+        res.jsonp(null);
     } else {
         return next();
     }

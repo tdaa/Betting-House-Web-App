@@ -1,11 +1,20 @@
 var passport = require('passport');
+var bcrypt = require('bcrypt');
 var LocalStrategy = require('passport-local').Strategy;
 var models = require('../models');
+
+
+async function hash(password) {
+    let hash_pass = await bcrypt.hash(password, 10);
+    return hash_pass;
+}
 
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
-}, (username, password, done) => {
+}, /*async*/ (username, password, done) => {
+    //const pass = await hash(password);
+
     models.Utilizador
         .findOne({ where: { Email: username, Password: password } })
         .then(utilizador => {
