@@ -9,10 +9,16 @@ module.exports = (sequelize, DataTypes) => {
             },
             Estado: {
                 type: DataTypes.STRING,
-                default: -1
+                allowNull: false,
+                default: 1
             },
             DiaHora: {
-                type: DataTypes.DATE
+                type: DataTypes.DATE,
+                allowNull: false
+            },
+            Vencedor: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
         },
         {

@@ -7,8 +7,15 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.INTEGER,
                 primaryKey: true
             },
-            Valor: DataTypes.DOUBLE,
-            Estado: DataTypes.STRING
+            Valor: {
+                type: DataTypes.DOUBLE,
+                allowNull: false
+                
+            },
+            Estado: {
+                type: DataTypes.STRING,
+                allowNull: false
+            }
         },
         {
             // Evita que sejam criados os campos "createdAt" e "updatedAt".
