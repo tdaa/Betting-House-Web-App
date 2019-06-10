@@ -173,11 +173,17 @@ export default {
     },
     submeterAposta () {
       // NOTA: Preencher 'data' com informação no boletim!
-      let data = {
-        ids_eventos: [],
-        odds_apostadas: [],
-        valor: 10
-      }
+      let data = []
+      let aposta = {}
+
+      this.items.forEach(it => {
+        aposta.evento = it.evento
+        aposta.resultado = it.participante
+        aposta.odd = it.odd
+        aposta.valor = this.quantia
+        data.push(aposta)
+        aposta = {}
+      })
 
       axios.post('http://localhost:2727/apostar', data)
         .then(response => {
