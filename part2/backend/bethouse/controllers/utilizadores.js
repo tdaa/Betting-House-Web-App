@@ -60,3 +60,17 @@ Utilizadores.registerUser = async function(user_data) {
     
     return res;
 }
+
+Utilizadores.subtractCoins = async function(email_user, coins) {
+    let query = `UPDATE Utilizadors 
+                 SET EssCoins = EssCoins - ?
+                 WHERE Utilizadors.Email = ?;`;
+
+    let res = await models.sequelize.query(
+        query,
+        { replacements: [coins, email_user] },
+        { type: models.sequelize.QueryTypes.UPDATE }
+    );
+
+    return res;
+}

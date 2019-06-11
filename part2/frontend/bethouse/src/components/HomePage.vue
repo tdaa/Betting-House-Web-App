@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="container" style="width: 30%">
+      <b-alert v-model="showErrorAlert" variant="danger" dismissible>
+        Não possui EssCoins suficientes!
+      </b-alert>
+    </div>
     <div class="row">
       <div class="col-md-7">
         <div style="margin-top: 20px; padding-left: 10px">
@@ -79,6 +84,8 @@ export default {
   name: 'HomePage',
   data () {
     return {
+      showErrorAlert: false,
+      user: {},
       quantia: 0,
       ganhos: 0,
       fields: [
@@ -106,6 +113,7 @@ export default {
     axios.get('http://localhost:2727/session')
       .then(response => {
         if (response.data) {
+          this.user = response.data[0]
           this.getCategories()
           this.getEventos()
         } else {
@@ -172,26 +180,29 @@ export default {
       }
     },
     submeterAposta () {
-      // NOTA: Preencher 'data' com informação no boletim!
-      let data = []
-      let aposta = {}
+      if (this.user.EssCoins - this.quantia < 0) {
+        this.showErrorAlert = true
+      } else {
+        let data = []
+        let aposta = {}
 
-      this.items.forEach(it => {
-        aposta.evento = it.evento
-        aposta.resultado = it.participante
-        aposta.odd = it.odd
-        aposta.valor = this.quantia
-        data.push(aposta)
-        aposta = {}
-      })
+        this.items.forEach(it => {
+          aposta.evento = it.evento
+          aposta.resultado = it.participante
+          aposta.odd = it.odd
+          aposta.valor = this.quantia
+          data.push(aposta)
+          aposta = {}
+        })
 
-      axios.post('http://localhost:2727/apostar', data)
-        .then(response => {
-          this.items = []
-        })
-        .catch(errors => {
-          console.log(errors)
-        })
+        axios.post('http://localhost:2727/apostar', data)
+          .then(response => {
+            this.items = []
+          })
+          .catch(errors => {
+            console.log(errors)
+          })
+      }
     },
     removerEventoDeAposta (row) {
       this.items.pop(row.index)

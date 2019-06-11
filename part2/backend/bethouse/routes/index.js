@@ -1,9 +1,10 @@
 var
-    express      = require('express'),
     Utilizadores = require('../controllers/utilizadores'),
     Categorias   = require('../controllers/categorias'),
     Resultados   = require('../controllers/resultados'),
     Eventos      = require('../controllers/eventos'),
+    Apostas      = require('../controllers/apostas'),
+    express      = require('express'),
     router       = express.Router();
 
 
@@ -110,10 +111,23 @@ router.get('/eventos/:idEvento', async function(req, res) {
         .catch(errEv => res.status(500).send('Erro na listagem: ' + errEv));
 });
 
-/* Cria uma Aposta nova para um determinado Utilizador. */
+/* Cria uma Aposta nova para um determinado Utilizador e posteriormente subtrai o seu total de coins. */
 router.post('/apostar', authMiddleware, function(req, res, next) {
-    console.log('Body Data: ' + JSON.stringify(req.body));
-    res.jsonp([]);
+    Apostas.registarAposta(req.session.passport.user, req.body)
+        .then(info => {
+            Utilizadores.subtractCoins(info.email, info.coins)
+                .then(dados => {
+                    res.jsonp(dados);
+                })
+                .catch(errSub => {
+                    console.log(errSub);
+                    res.send('Erro ao subtrair coins do utilizador: ' + errSub);
+                })
+        })
+        .catch(errAp => {
+            console.log(errAp);
+            res.send('Erro no registo da aposta: ' + errAp);
+        });
 });
 
 module.exports = router;
