@@ -104,6 +104,7 @@
               this.show_premium = false
               this.deposito = 1
             } else {
+              alert('Foi registado com sucesso! Será redirecionado para a página de Login...');
               router.push('/')
             }
           })

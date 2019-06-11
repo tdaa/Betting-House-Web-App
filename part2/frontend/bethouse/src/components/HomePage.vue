@@ -133,6 +133,7 @@ export default {
     getEventos: function () {
       axios.get('http://localhost:2727/eventos')
         .then(response => {
+          console.log(response.data)
           const keys = Object.keys(response.data)
           keys.forEach(e => this.eventos.push(response.data[e]))
           this.parseEventos(this.eventos)
@@ -141,8 +142,8 @@ export default {
     },
     parseEventos: function (list) {
       this.eventosFiltrados = list.filter(e => e.idCategoria === 1)
-      const ids = Object.keys(this.eventosFiltrados)
-      let index = 0
+      // const ids = Object.keys(this.eventosFiltrados)
+      // let index = 0
       this.eventosFiltrados.forEach(e => {
         let evento = []
         const participantes = e.participantes
@@ -158,9 +159,9 @@ export default {
           indexParticipante++
         })
         evento.categoria = e.idCategoria
-        evento.idEvento = ids[index]
+        evento.idEvento = e.Evento
         this.eventosAMostrar.push(evento)
-        index++
+        // index++
         evento = []
       })
       this.eventosCategoria = this.eventosAMostrar.filter(e => e.categoria === 1)
