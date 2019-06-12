@@ -1,28 +1,26 @@
 var passport = require('passport');
-var bcrypt = require('bcrypt');
 var LocalStrategy = require('passport-local').Strategy;
+var md5 = require('md5');
 var models = require('../models');
-
-
-async function hash(password) {
-    let hash_pass = await bcrypt.hash(password, 10);
-    return hash_pass;
-}
 
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
-}, /*async*/ (username, password, done) => {
-    //const pass = await hash(password);
-
+}, (username, password, done) => {
     models.Utilizador
-        .findOne({ where: { Email: username, Password: password } })
+        .findOne({ where: { Email: username } })
         .then(utilizador => {
+            console.log('boas')
             if (utilizador) {
-                done(null, utilizador);
-            } else {
-                done(null, false, { message: 'Incorrect username or password' });
+                let stored = utilizador.dataValues.Password;
+                let submitted = md5(password);
+
+                if (stored == submitted) {
+                    done(null, utilizador);
+                }
             }
+
+            done(null, false, { message: 'Incorrect username or password' });
         });
 }));
 

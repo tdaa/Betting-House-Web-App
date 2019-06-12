@@ -17,9 +17,13 @@ select * from Evento_has_Resultados;
 
 ###### INSERTS ######
 
+insert into Administradors (id, Password)
+	values
+		('betadmin@bettinghouse.com', 'betadmin');
+
 insert into Utilizadors (id, Email, Password, Nome, Tipo, EssCoins, ValorPago, isPremium)
 	values 
-    (1, 'apostador@betess.com', 'apostador', 'Miguel Armindo', 'U', 100000, 50, 1);
+    (1, 'apostador@betess.com', '542868f6d2b00549c09e8d23761d816f', 'Miguel Armindo', 'U', 100000, 50, 1);
 
 insert into Categoria (idCategoria, Designacao)
 	values
@@ -74,7 +78,7 @@ where EventoIdEvento = 1 AND ResultadoIdResultado = 1;
 ##### QUERIES #####
 
 # Apaga o registo de uma Utilizador.
-DELETE FROM `Utilizadors` WHERE `id` = 3;
+DELETE FROM `Utilizadors` WHERE `id` = 1;
 
 # Apaga o registo de uma Aposta.
 DELETE FROM `Aposta` WHERE `idAposta` = 5;

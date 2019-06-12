@@ -1,10 +1,8 @@
 <template>
     <div>
         <b-navbar class="navbar" toggleable="lg" type="dark">
-            <b-navbar-nav style="margin-left: 44.4%">
-                <b-nav-item href="/">
-                    <img class="logo" src="../assets/logo.png"/>
-                </b-nav-item>
+            <b-navbar-nav style="margin-left: 46.3%">
+              <img class="logo" src="../assets/logo-nobg.png"/>
             </b-navbar-nav>
 
             <b-navbar-toggle target="nav_collapse" />
@@ -30,6 +28,7 @@
 
 import axios from 'axios'
 import router from '../router'
+import VueRouter from 'vue-router';
 
 export default {
   name: 'Navbar',
@@ -48,6 +47,7 @@ export default {
     getSession () {
       axios.get('http://localhost:2727/session')
         .then(response => {
+          console.log(response.data)
           if (response.data) {
             this.show_user_info = true
           }

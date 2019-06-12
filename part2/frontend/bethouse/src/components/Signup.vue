@@ -15,7 +15,7 @@
           v-model="form.email"
           type="email"
           required
-          placeholder="Introduza email"
+          placeholder="Introduza o seu email"
         ></b-form-input>
       </b-form-group>
 
@@ -55,7 +55,9 @@
         ></b-form-input><br>
       </b-form-group>
 
-      <b-button class="button_custom" style="align:center" type="submit">Criar Conta</b-button>
+      <div style="text-align: center">
+        <b-button class="button_custom" style="align:center" type="submit">Criar Conta</b-button>
+      </div>
     </b-form>
   </div>
 </template>
