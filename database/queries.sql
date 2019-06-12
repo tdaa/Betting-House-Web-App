@@ -47,13 +47,13 @@ insert into Eventos (idEvento, Estado, DiaHora, idCategoria)
         
 insert into Eventos (idEvento, Estado, DiaHora, idCategoria)
 	values
-		(3, 1, '2020-05-01 21:30:05', 1);
+		(4, 1, '2021-05-01 21:30:05', 1);
         
 insert into Evento_has_Resultados (EventoIdEvento, ResultadoIdResultado, Odd)
 	values
-		(3, 1, 5.0),
-		(3, 3, 3.7),
-		(3, 4, 2.1);
+		(4, 1, 5.0),
+		(4, 3, 3.7),
+		(4, 4, 2.1);
         
 insert into Evento_has_Resultados (EventoIdEvento, ResultadoIdResultado, Odd)
 	values
@@ -106,3 +106,13 @@ SELECT Eventos.idEvento, Eventos.Estado, Eventos.DiaHora, Eventos.idCategoria,
 	JOIN Categoria ON Categoria.idCategoria = Eventos.idCategoria
 	JOIN Evento_has_Resultados ON Evento_has_Resultados.EventoIdEvento = Eventos.idEvento
 	JOIN Resultados ON Resultados.idResultado = Evento_has_Resultados.ResultadoIdResultado;
+    
+
+
+
+SELECT Evento_in_Aposta.EventoIdEvento AS idEvento, Resultados.Designacao AS resultadoApostado, Evento_has_Resultados.Odd AS odd
+            FROM Evento_in_Aposta
+            JOIN Evento_has_Resultados ON Evento_has_Resultados.EventoIdEvento = Evento_in_Aposta.EventoIdEvento 
+                AND Evento_has_Resultados.ResultadoIdResultado = Evento_in_Aposta.idResultado_Apostado
+            JOIN Resultados ON Resultados.idResultado = Evento_in_Aposta.idResultado_Apostado
+            WHERE Evento_in_Aposta.ApostumIdAposta = 7;

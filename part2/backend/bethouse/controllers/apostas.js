@@ -2,6 +2,54 @@ var models = require('../models');
 const Apostas = module.exports;
 
 
+Apostas.getApostasByEmail = async function(email) {
+    var lstApostas = [];
+    
+    /* Obter todos os ids de Apostas. */
+    let get_idsApostas = await models.sequelize.query(
+        'SELECT * FROM Aposta WHERE Utilizador_Email = ?',
+        { replacements: [email] },
+        { type: models.sequelize.QueryTypes.SELECT }
+    );
+    var idsApostas = JSON.parse(JSON.stringify(get_idsApostas[0]));
+    
+    for (let i = 0; i < idsApostas.length; i++) {
+        var apostaObj = {};
+
+        var idAposta = idsApostas[i].idAposta;
+        var valor    = idsApostas[i].Valor;
+        var estado   = (idsApostas[i].Estado == 'ABERTA') ? 1 : 0 ;
+
+        apostaObj['idAposta'] = idAposta;
+        apostaObj['valor'] = valor;
+        apostaObj['estado'] = estado;
+
+        let get_eventos_aposta = await models.sequelize.query(
+            `SELECT Evento_in_Aposta.EventoIdEvento AS idEvento, 
+                    Resultados.Designacao AS resultadoApostado, 
+                    Evento_has_Resultados.Odd AS odd
+            FROM Evento_in_Aposta
+            JOIN Evento_has_Resultados ON Evento_has_Resultados.EventoIdEvento = Evento_in_Aposta.EventoIdEvento 
+                AND Evento_has_Resultados.ResultadoIdResultado = Evento_in_Aposta.idResultado_Apostado
+            JOIN Resultados ON Resultados.idResultado = Evento_in_Aposta.idResultado_Apostado
+            WHERE Evento_in_Aposta.ApostumIdAposta = ?;`,
+            { replacements: [idAposta] },
+            { type: models.sequelize.QueryTypes.SELECT }
+        );
+        var eventos = JSON.parse(JSON.stringify(get_eventos_aposta[0]));
+        var ganhos = valor;
+        for (const ev in eventos)
+            ganhos *= eventos[ev].odd;
+        
+        apostaObj['ganhosPossiveis'] = ganhos;
+        apostaObj['eventos'] = eventos;
+
+        lstApostas.push(apostaObj);
+    }
+
+    return lstApostas;
+}
+
 Apostas.registarAposta = async function(idUser, boletim) {
 
     /* Obter email do Utilizador. */
