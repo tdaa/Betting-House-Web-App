@@ -12,11 +12,10 @@
             <b-collapse is-nav id="nav_collapse">
 
             <!-- Right aligned nav items -->
-            <b-navbar-nav class="ml-auto">
-                <b-nav-item style="font-size: 20px"><router-link style="color: silver" to="/">Login</router-link></b-nav-item>
+            <b-navbar-nav v-if="show_user_info" class="ml-auto">
                 <b-nav-item-dropdown right>
                     <!-- Using button-content slot -->
-                    <template slot="button-content"><em style="font-size: 20px">User</em></template>
+                    <template slot="button-content"><b style="font-size: 20px">Menu</b></template>
                     <b-dropdown-item href="#" @click="goProfile">Profile</b-dropdown-item>
                     <b-dropdown-item href="#" @click="signout">Signout</b-dropdown-item>
                 </b-nav-item-dropdown>
@@ -27,12 +26,37 @@
 </template>
 
 <script>
+/* eslint-disable */
+
 import axios from 'axios'
 import router from '../router'
 
 export default {
   name: 'Navbar',
+
+  data () {
+    return {
+      show_user_info: false
+    }
+  },
+
+  mounted: function() {
+    this.getSession()
+  },
+
   methods: {
+    getSession () {
+      axios.get('http://localhost:2727/session')
+        .then(response => {
+          if (response.data) {
+            this.show_user_info = true
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+
     signout () {
       axios.get('http://localhost:2727/logout')
         .then(response => {
@@ -40,10 +64,12 @@ export default {
         })
         .catch(err => console.log(err))
     },
+
     goProfile () {
       router.push('/profile')
     }
   }
+
 }
 </script>
 
