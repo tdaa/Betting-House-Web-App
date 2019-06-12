@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <div class="container" style="text-align: center">
     <div class="login">
       <h3>Sign In</h3>
@@ -7,6 +7,36 @@
       <button v-on:click="login">Login</button>
       <p>You don't have an account ? You can <router-link to="/signup">create one</router-link></p>
     </div>
+  </div>
+</template>-->
+<template>
+  <div class="container" style="width: 30%">
+    <br>
+    <h3 style="text-align: center">Sign In</h3>
+    <br>
+    <b-form @submit="login" v-if="show">
+      <b-form-group id="input-group-1" label="Email:" label-for="input-1">
+        <b-form-input
+          id="input-1"
+          v-model="form.username"
+          type="email"
+          required
+          placeholder="Introduza email"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-3" label="Password:" label-for="input-3">
+        <b-form-input
+          id="input-3"
+          type="password"
+          v-model="form.password"
+          required
+          placeholder="Introduza a sua password"
+        ></b-form-input><br>
+      </b-form-group>
+
+      <b-button class="button_custom" style="align:center" type="submit">Iniciar Sessão</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -17,8 +47,11 @@ export default {
   name: 'login',
   data () {
     return {
-      username: '',
-      password: ''
+      show: true,
+      form: {
+        username: '',
+        password: ''
+      }
     }
   },
   created () {
@@ -39,8 +72,8 @@ export default {
 
     login () {
       let data = {
-        username: this.username,
-        password: this.password
+        username: this.form.username,
+        password: this.form.password
       }
 
       axios.post('http://localhost:2727/login/processLogin', data)
@@ -53,6 +86,17 @@ export default {
 }
 </script>
 
+<style>
+  .button_custom {
+    background-color: rgb(245, 116, 52);
+  }
+
+  .button_custom:hover {
+    background-color: rgb(199, 101, 53);
+  }
+</style>
+
+<!--
 <style scoped>  /* "scoped" attribute limit the CSS to this component only */
 .login {
   margin-top: 40px;
@@ -75,4 +119,4 @@ p a {
   text-decoration: underline;
   cursor: pointer;
 }
-</style>
+</style> -->

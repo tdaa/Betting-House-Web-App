@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             idAposta: {
                 type: DataTypes.INTEGER,
+                autoIncrement: true,
                 primaryKey: true
             },
             Valor: {
