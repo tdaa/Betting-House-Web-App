@@ -18,7 +18,7 @@
                         <template slot="index" slot-scope="data">
                           {{ data.item.idParticipante}}
                         </template>
-                        <template slot="participante" slot-scope="data">
+                        <template slot="resultado" slot-scope="data">
                           {{ data.item.participante }}
                         </template>
                         <template slot="odd" slot-scope="data">
@@ -41,7 +41,7 @@
           <b-card style="font-size: 17px; max-width: 95%;" header="Boletim" no-body header-bg-variant="dark" header-text-variant="white">
             <div style="text-align: center;">
               <b-table :items="items" :fields="fieldsAposta">
-                <template slot="participante" slot-scope="data">
+                <template slot="resultado" slot-scope="data">
                   {{ data.item.participante }}
                 </template>
                 <template slot="odd" slot-scope="data">
@@ -91,12 +91,12 @@ export default {
       fields: [
         // A virtual column that doesn't exist in items
         'index',
-        'participante',
+        'resultado',
         'odd',
         'aposta'
       ],
       fieldsAposta: [
-        'participante',
+        'resultado',
         'odd',
         'evento',
         'remover'
