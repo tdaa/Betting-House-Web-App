@@ -10,9 +10,7 @@ router.post('/', (req, res, next) => {
     };
 
     Utilizadores.registerUser(req.body)
-        .then(dados => {
-            res.jsonp(response);
-        })
+        .then(dados => res.jsonp(response))
         .catch(err => {
             response.status = 0;
 

@@ -1,11 +1,12 @@
 var
-    Utilizadores = require('../controllers/utilizadores'),
-    Categorias   = require('../controllers/categorias'),
-    Resultados   = require('../controllers/resultados'),
-    Eventos      = require('../controllers/eventos'),
-    Apostas      = require('../controllers/apostas'),
-    express      = require('express'),
-    router       = express.Router();
+    Administradores = require('../controllers/administradores'),
+    Utilizadores    = require('../controllers/utilizadores'),
+    Categorias      = require('../controllers/categorias'),
+    Resultados      = require('../controllers/resultados'),
+    Eventos         = require('../controllers/eventos'),
+    Apostas         = require('../controllers/apostas'),
+    express         = require('express'),
+    router          = express.Router();
 
 
 // Middleware que verifica se o utilizador tem login no sistema.

@@ -11,6 +11,11 @@
 </template>-->
 <template>
   <div class="container" style="width: 30%">
+    <div>
+      <b-alert v-model="showErrorAlert" variant="danger" dismissible>
+        Email ou Password incorretos!
+      </b-alert>
+    </div>
     <br>
     <h3 style="text-align: center">Sign In</h3>
     <br>
@@ -21,7 +26,7 @@
           v-model="form.username"
           type="email"
           required
-          placeholder="Introduza email"
+          placeholder="Introduza o seu email"
         ></b-form-input>
       </b-form-group>
 
@@ -34,9 +39,12 @@
           placeholder="Introduza a sua password"
         ></b-form-input><br>
       </b-form-group>
-
-      <b-button class="button_custom" style="align:center" type="submit">Iniciar Sessão</b-button>
+      <div style="text-align: center">
+        <b-button class="button_custom" type="submit">Iniciar Sessão</b-button>
+      </div>
     </b-form>
+    <br>
+    <p style="text-align: center">Não possui conta? Poderá criar uma <router-link to="/signup">aqui</router-link>!</p>
   </div>
 </template>
 
@@ -47,6 +55,7 @@ export default {
   name: 'login',
   data () {
     return {
+      showErrorAlert: false,
       show: true,
       form: {
         username: '',
@@ -84,7 +93,10 @@ export default {
             router.push('/home')
           }
         })
-        .catch(errors => console.log(errors))
+        .catch(errors => {
+          this.showErrorAlert = true
+          console.log(JSON.stringify(errors))
+        })
     }
   }
 }
