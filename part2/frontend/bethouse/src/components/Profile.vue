@@ -59,11 +59,11 @@
                   <v-layout row justify-center>
                     <v-dialog v-model="dialog" width="600px">
                       <template v-slot:activator="{ on }">
-                        <v-btn color="primary" dark v-on="on">Consultar aposta</v-btn>
+                        <v-btn color="primary" dark v-on="on" @click="() => getEventosDeAposta(row)">Consultar aposta</v-btn>
                       </template>
                       <v-card>
                         <v-card-title>
-                          <span class="headline">Aposta {{ row.index + 1 }}</span>
+                          <span class="headline">Aposta {{ aposta }}</span>
                         </v-card-title>
                         <v-card-text>
                           <div style="text-align: center;">
@@ -149,7 +149,7 @@ export default {
       text: 'taki taki',
       moedas: 0,
       apostas: [],
-      aposta: [],
+      aposta: 0,
       eventos: [],
       fieldsAposta: [
         'resultado',
@@ -188,8 +188,14 @@ export default {
         .then(res => { this.apostas = res.data })
         .catch(err => console.log(err))
        */
-      this.apostas = [{idAposta: 1, valor: 2.00, ganhosPossiveis: 20.00, estado: 0}, {idAposta: 2, valor: 3.21, ganhosPossiveis: 14.50, estado: 1}]
-      this.eventos = [{idEvento: 1, resultadoApostado: 'Benfica', odd: 2.35}, {idEvento: 3, resultadoApostado: 'Braga', odd: 3.65}]
+      this.apostas = [{idAposta: 1, valor: 2.00, ganhosPossiveis: 20.00, estado: 0, eventos: [{idEvento: 1, resultadoApostado: 'Benfica', odd: 2.35}, {idEvento: 3, resultadoApostado: 'Braga', odd: 3.65}]},
+        {idAposta: 3, valor: 10.00, ganhosPossiveis: 100.00, estado: 0, eventos: [{idEvento: 10, resultadoApostado: 'Barcelona', odd: 4.21}, {idEvento: 14, resultadoApostado: 'Chelsea', odd: 2.78}]}]
+    },
+    getEventosDeAposta (row) {
+      let id = row.item.idAposta
+      this.aposta = id
+      let e = this.apostas.filter(a => a.idAposta === id)
+      this.eventos = e[0].eventos
     }
   }
 }
