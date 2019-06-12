@@ -70,7 +70,7 @@ export default {
         })
     },
 
-    login () {
+    login: function () {
       let data = {
         username: this.form.username,
         password: this.form.password
@@ -78,7 +78,11 @@ export default {
 
       axios.post('http://localhost:2727/login/processLogin', data)
         .then(response => {
-          router.push('/home')
+          if (response.data['Email'] === 'betadmin@bettinghouse.com') {
+            router.push('/homeAdmin')
+          } else {
+            router.push('/home')
+          }
         })
         .catch(errors => console.log(errors))
     }
