@@ -21,7 +21,7 @@ var app = express();
 app.use(cookieSession({
     name: 'betweb_session',
     keys: ['betweb'],
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 3600000 // 1 hora
 }));
 
 

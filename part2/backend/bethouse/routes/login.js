@@ -8,8 +8,6 @@ router.get('/session', (req, res, next) => {
 });
 
 router.post('/processLogin', (req, res, next) => {
-    console.log(req.body);
-
     passport.authenticate('local', (err, utilizador, info) => {
         if (err) {
             return next(err);
