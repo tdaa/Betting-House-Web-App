@@ -14,8 +14,8 @@
                 <b-nav-item-dropdown right>
                     <!-- Using button-content slot -->
                     <template slot="button-content"><b style="font-size: 20px">Menu</b></template>
-                    <b-dropdown-item href="#" @click="goProfile">Profile</b-dropdown-item>
-                    <b-dropdown-item href="#" @click="signout">Signout</b-dropdown-item>
+                    <b-dropdown-item href="#" @click="goProfile">Perfil</b-dropdown-item>
+                    <b-dropdown-item href="#" @click="signout">Logout</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
             </b-collapse>

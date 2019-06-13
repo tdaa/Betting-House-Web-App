@@ -8,11 +8,11 @@ Utilizadores.getUser = async function(Email, Password) {
                  WHERE Utilizadors.Email = ?, Utilizadors.Password = ?`;
 
     let res = await models.sequelize.query(
-        query, 
-        { replacements: [Email, Password] }, 
+        query,
+        { replacements: [Email, Password] },
         { type: models.sequelize.QueryTypes.SELECT }
     );
-    
+
     return res;
 }
 
@@ -21,11 +21,11 @@ Utilizadores.getUserByID = async function(id) {
                  WHERE Utilizadors.id = ?`;
 
     let res = await models.sequelize.query(
-        query, 
-        { replacements: [id] }, 
+        query,
+        { replacements: [id] },
         { type: models.sequelize.QueryTypes.SELECT }
     );
-    
+
     return res;
 }
 
@@ -43,16 +43,16 @@ Utilizadores.registerUser = async function(user_data) {
         query = `INSERT INTO Utilizadors (Email, Password, Nome, Tipo, EssCoins, isPremium)
                  VALUES 
                     (?, ?, ?, ?, ?, ?);`;
-        
+
         replace = [user_data.email, md5(user_data.password), user_data.nome, 'U', 0, 0];
     }
 
     let res = await models.sequelize.query(
-        query, 
-        { replacements: replace }, 
+        query,
+        { replacements: replace },
         { type: models.sequelize.QueryTypes.INSERT }
     );
-    
+
     return res;
 }
 
@@ -65,6 +65,20 @@ Utilizadores.subtractCoins = async function(email_user, coins) {
         query,
         { replacements: [coins, email_user] },
         { type: models.sequelize.QueryTypes.UPDATE }
+    );
+
+    return res;
+}
+
+Utilizadores.addCoins = async function (id_user, coins) {
+    let query = `UPDATE Utilizadors
+                 SET EssCoins = EssCoins + ?
+                 WHERE Utilizadors.id = ?;`;
+
+    let res = await models.sequelize.query(
+        query,
+        {replacements: [coins, id_user]},
+        {type: models.sequelize.QueryTypes.UPDATE}
     );
 
     return res;

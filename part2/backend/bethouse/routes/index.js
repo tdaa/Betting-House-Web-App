@@ -60,7 +60,7 @@ router.get('/eventos', async function(req, res) {
         .then(async function(dados) {
             var dadosObj = JSON.parse(JSON.stringify(dados[0]));
             var eventosObj = {};
-            
+
             for (let i = 0; i < dadosObj.length; i++) {
                 var evento = dadosObj[i];
                 var idEv   = '' + evento.idEvento;
@@ -92,7 +92,7 @@ router.get('/eventos', async function(req, res) {
                 var fechar_evento = false;
 
                 let datetime = eventosObj[idEvento]['DiaHora'].split('T');
-                
+
                 /* Processar data de fecho do evento. */
                 const date   = datetime[0]
                     .split('-')
@@ -101,7 +101,7 @@ router.get('/eventos', async function(req, res) {
                     .split('.')[0]
                     .split(':')
                     .map(numStr => { return parseInt(numStr) });
-                
+
                 /* Processar data neste instante de tempo. */
                 var now = new Date();
                 var now_date = [now.getFullYear(), now.getMonth() + 1, now.getDate()];
@@ -157,13 +157,13 @@ router.get('/eventos', async function(req, res) {
                 } else {
                     fechar_evento = true;
                 }
-                
+
                 if (fechar_evento) {
                     await Eventos.closeEvento(idEvento)
                         .catch(err => console.log(err));
                 }
             }
-            
+
             await checkFinalApostas();
 
             res.jsonp(eventos_filtered);
@@ -230,6 +230,17 @@ router.post('/apostar', authMiddleware, function(req, res, next) {
             res.send('Erro no registo da aposta: ' + errAp);
         });
 });
+
+router.post('/coins/:email', function (req, res, next) {
+   Utilizadores.addCoins(req.session.passport.user, req.body.moedas)
+       .then(dados => {
+           res.jsonp(dados);
+       })
+       .catch(err => {
+           console.log(err);
+           res.send('Erro no carregamento de moedas: ' + err);
+       });
+})
 
 
 module.exports = router;
