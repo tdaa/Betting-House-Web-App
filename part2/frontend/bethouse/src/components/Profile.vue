@@ -129,7 +129,7 @@
                   required
                   placeholder=""
                 ></b-form-input><br>
-                <b-button variant="success" @click="() => addCoins()">Confirmar</b-button>
+                <b-button variant="success" @click="() => addEssCoins()">Confirmar</b-button>
               </b-form-group>
             </center>
           </v-card-text>
@@ -199,6 +199,22 @@ export default {
       this.aposta = id
       let e = this.apostas.filter(a => a.idAposta === id)
       this.eventos = e[0].eventos
+    },
+
+    addEssCoins () {
+      let data = {
+        moedas: this.moedas
+      }
+
+      axios
+        .post('http://localhost:2727/coins/' + this.user.Email, data, { withCredentials: true })
+        .then(res => {
+          if(res.data) {
+            alert("Moedas carregadas com sucesso!")
+            this.moedas = 0
+          }
+        })
+        .catch(err => console.log(err))
     }
 
   }
