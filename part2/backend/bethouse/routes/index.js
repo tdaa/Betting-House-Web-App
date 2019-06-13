@@ -203,6 +203,15 @@ router.get('/eventos/:idEvento', async function(req, res) {
         .catch(errEv => res.status(500).send('Erro na listagem: ' + errEv));
 });
 
+/* Devolve todas as Apostas de um determinado Utilizador. */
+router.get('/apostas/:email', function(req, res, next) {
+    Apostas.getApostasByEmail(req.params.email)
+        .then(dados => {
+            res.jsonp(dados);
+        })
+        .catch(err => console.log(err));
+});
+
 /* Cria uma Aposta nova para um determinado Utilizador e posteriormente subtrai o seu total de coins. */
 router.post('/apostar', authMiddleware, function(req, res, next) {
     Apostas.registarAposta(req.session.passport.user, req.body)

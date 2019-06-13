@@ -41,18 +41,18 @@
                 <template slot="identificador" slot-scope="data">
                   {{ data.item.idAposta }}
                 </template>
-                <template slot="valor" slot-scope="data">
+                <template slot="valor_apostado" slot-scope="data">
                   {{ data.item.valor }}
                 </template>
                 <template slot="ganhos_possiveis" slot-scope="data">
-                  {{ data.item.ganhosPossiveis }}
+                  {{ Math.round(data.item.ganhosPossiveis * 100) / 100 }}
                 </template>
                 <template slot="estado" slot-scope="data">
                   <div v-if="data.item.estado === 0">
-                    <BCardText>ABERTA</BCardText>
+                    <BCardText>FECHADA</BCardText>
                   </div>
                   <div v-else>
-                    <BCardText>FECHADA</BCardText>
+                    <BCardText>ABERTA</BCardText>
                   </div>
                 </template>
                 <template slot="consultar" slot-scope="row">
@@ -82,7 +82,7 @@
                         </v-card-text>
                         <v-card-actions>
                           <v-spacer></v-spacer>
-                          <v-btn color="orange darken-1" flat="flat" @click="dialog = false">OK</v-btn>
+                          <v-btn color="orange darken-1" flat="flat" @click="dialog = false"><b>OK</b></v-btn>
                         </v-card-actions>
                       </v-card>
                     </v-dialog>
@@ -140,12 +140,15 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios'
+
 export default {
   name: 'Profile',
+
   data () {
     return {
-      user: [],
+      user: {},
       text: 'taki taki',
       moedas: 0,
       apostas: [],
@@ -158,7 +161,7 @@ export default {
       ],
       fields: [
         'identificador',
-        'valor',
+        'valor_apostado',
         'ganhos_possiveis',
         'estado',
         'consultar'
@@ -166,37 +169,38 @@ export default {
       dialog: false
     }
   },
-  created () {
-    this.getSession()
-    this.getData()
+
+  async created () {
+    await this.getData()
   },
+
   methods: {
-    getSession () {
+    getData () {
       axios.get('http://localhost:2727/session')
         .then(response => {
           if (response.data) {
             this.user = response.data[0]
-          }
+
+            /* Obter apostas do Utilizador em sessão. */
+            axios
+              .get('http://localhost:2727/apostas/' + this.user.Email, { withCredentials: true })
+              .then(res => {
+                console.log(res.data)
+                this.apostas = res.data
+              })
+              .catch(err => console.log(err))
+            }
         })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    getData () {
-      /* axios
-        .get('http://localhost:2727/apostas/:' + this.user.id, { withCredentials: true })
-        .then(res => { this.apostas = res.data })
         .catch(err => console.log(err))
-       */
-      this.apostas = [{idAposta: 1, valor: 2.00, ganhosPossiveis: 20.00, estado: 0, eventos: [{idEvento: 1, resultadoApostado: 'Benfica', odd: 2.35}, {idEvento: 3, resultadoApostado: 'Braga', odd: 3.65}]},
-        {idAposta: 3, valor: 10.00, ganhosPossiveis: 100.00, estado: 0, eventos: [{idEvento: 10, resultadoApostado: 'Barcelona', odd: 4.21}, {idEvento: 14, resultadoApostado: 'Chelsea', odd: 2.78}]}]
     },
+
     getEventosDeAposta (row) {
       let id = row.item.idAposta
       this.aposta = id
       let e = this.apostas.filter(a => a.idAposta === id)
       this.eventos = e[0].eventos
     }
+
   }
 }
 </script>

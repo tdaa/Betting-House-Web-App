@@ -1,7 +1,5 @@
 'use strict';
 
-//var bcrypt = require('bcrypt');
-
 module.exports = (sequelize, DataTypes) => {
     var Utilizador = sequelize.define('Utilizador', 
         {   
@@ -43,19 +41,6 @@ module.exports = (sequelize, DataTypes) => {
         {
             // Evita que sejam criados os campos "createdAt" e "updatedAt".
             timestamps: false,
-            /*
-            hooks: {
-                beforeCreate: (utilizador) => {
-                    const salt = bcrypt.genSaltSync();
-                    utilizador.Password = bcrypt.hashSync(utilizador.Password, salt);
-                }
-            },
-
-            instanceMethods: {
-                validPassword: function(Password) {
-                    return bcrypt.compareSync(Password, this.Password);
-                }
-            } */
         }
     );
 

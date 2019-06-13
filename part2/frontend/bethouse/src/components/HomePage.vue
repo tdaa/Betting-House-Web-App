@@ -133,7 +133,6 @@ export default {
     getEventos: function () {
       axios.get('http://localhost:2727/eventos')
         .then(response => {
-          console.log(response.data)
           const keys = Object.keys(response.data)
           keys.forEach(e => this.eventos.push(response.data[e]))
           this.parseEventos(this.eventos)

@@ -10,17 +10,18 @@ passport.use(new LocalStrategy({
     models.Utilizador
         .findOne({ where: { Email: username } })
         .then(utilizador => {
-            console.log('boas')
             if (utilizador) {
                 let stored = utilizador.dataValues.Password;
                 let submitted = md5(password);
 
                 if (stored == submitted) {
                     done(null, utilizador);
+                } else {
+                    done(null, false, { message: 'Incorrect username or password' });
                 }
+            } else {
+                done(null, false, { message: 'Incorrect username or password' });
             }
-
-            done(null, false, { message: 'Incorrect username or password' });
         });
 }));
 
