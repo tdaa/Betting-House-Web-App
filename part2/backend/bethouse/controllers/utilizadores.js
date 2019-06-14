@@ -70,14 +70,14 @@ Utilizadores.subtractCoins = async function(email_user, coins) {
     return res;
 }
 
-Utilizadores.addCoins = async function (id_user, coins) {
+Utilizadores.addCoins = async function (email_user, coins) {
     let query = `UPDATE Utilizadors
                  SET EssCoins = EssCoins + ?
-                 WHERE Utilizadors.id = ?;`;
+                 WHERE Utilizadors.Email = ?;`;
 
     let res = await models.sequelize.query(
         query,
-        {replacements: [coins, id_user]},
+        {replacements: [coins, email_user]},
         {type: models.sequelize.QueryTypes.UPDATE}
     );
 
