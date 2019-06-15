@@ -231,8 +231,8 @@ router.post('/apostar', authMiddleware, function(req, res, next) {
         });
 });
 
-router.post('/coins/:email', function (req, res, next) {
-   Utilizadores.addCoins(req.session.passport.user, req.body.moedas)
+router.post('/coins/', function (req, res, next) {
+   Utilizadores.addCoins(req.body.email, req.body.moedas)
        .then(dados => {
            res.jsonp(dados);
        })

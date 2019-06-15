@@ -2,7 +2,6 @@
   <div id="app">
     <Navbar></Navbar>
     <router-view/>
-    <Footer></Footer>
     <!--
     <Subcategories></Subcategories>
     <div class="col-lg-12">
