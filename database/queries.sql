@@ -1,5 +1,7 @@
 ###### SELECTS ######
 
+select * from Administradors;
+
 select * from Utilizadors;
 
 select * from Aposta;
@@ -16,10 +18,9 @@ select * from Evento_has_Resultados;
 
 
 ###### INSERTS ######
-
 insert into Administradors (id, Password)
 	values
-		('betadmin@bettinghouse.com', 'betadmin');
+		('betadmin@bettinghouse.com', '431b408ac46e2f34c3a455db2488daf5');
 
 insert into Utilizadors (id, Email, Password, Nome, Tipo, EssCoins, ValorPago, isPremium)
 	values 

@@ -7,32 +7,64 @@ passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
 }, (username, password, done) => {
-    models.Utilizador
-        .findOne({ where: { Email: username } })
-        .then(utilizador => {
-            if (utilizador) {
-                let stored = utilizador.dataValues.Password;
-                let submitted = md5(password);
+    if (username.includes('@bettinghouse.com')) {
+        models.Administrador
+            .findOne({ where: { id: username } })
+            .then(utilizador => {
+                if (utilizador) {
+                    let stored = utilizador.dataValues.Password;
+                    let submitted = md5(password);
 
-                if (stored == submitted) {
-                    done(null, utilizador);
+                    if (stored == submitted) {
+                        done(null, utilizador);
+                    } else {
+                        done(null, false, { message: 'Incorrect username or password' });
+                    }
                 } else {
                     done(null, false, { message: 'Incorrect username or password' });
                 }
-            } else {
-                done(null, false, { message: 'Incorrect username or password' });
-            }
-        });
+            })
+    } else {
+        models.Utilizador
+            .findOne({ where: { Email: username } })
+            .then(utilizador => {
+                if (utilizador) {
+                    let stored = utilizador.dataValues.Password;
+                    let submitted = md5(password);
+
+                    if (stored == submitted) {
+                        done(null, utilizador);
+                    } else {
+                        done(null, false, { message: 'Incorrect username or password' });
+                    }
+                } else {
+                    done(null, false, { message: 'Incorrect username or password' });
+                }
+            })
+    }    
 }));
 
 passport.serializeUser((utilizador, done) => {
+    console.log('inside serialize');
+    console.log(utilizador);
+    console.log(utilizador.id);
     done(null, utilizador.id);
 });
 
 passport.deserializeUser((_id, done) => {
-    models.Utilizador
-        .findOne({ where: { id: _id } })
-        .then(utilizador => {
-            done(null, utilizador);
-        });
-})
+    if (typeof _id === 'number') {
+        models.Utilizador
+            .findOne({ where: { id: _id } })
+            .then(utilizador => {
+                console.log(utilizador);
+                done(null, utilizador);
+            });
+    } else {
+        models.Administrador
+            .findOne({ where: { id: _id } })
+            .then(utilizador => {
+                console.log(utilizador);
+                done(null, utilizador);
+            });
+    }
+});

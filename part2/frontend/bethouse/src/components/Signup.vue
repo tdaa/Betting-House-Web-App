@@ -56,7 +56,7 @@
       </b-form-group>
 
       <div style="text-align: center">
-        <b-button class="button_custom" style="align:center" type="submit">Criar Conta</b-button>
+        <input class="btn btn-primary button_custom" type="submit" value="Criar Conta"/>
       </div>
     </b-form>
   </div>
@@ -127,9 +127,11 @@
 <style>
   .button_custom {
     background-color: rgb(245, 116, 52);
+    border-color: rgb(0, 0, 0);
   }
 
-  .button_custom:hover { 
+  .button_custom:hover {
     background-color: rgb(199, 101, 53);
+    border-color: rgb(0, 0, 0);
   }
 </style>
