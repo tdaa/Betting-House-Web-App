@@ -4,7 +4,7 @@ const Administradores = module.exports;
 
 Administradores.getUser = async function(Email, Password) {
     let query = `SELECT * FROM Administradors
-                 WHERE Administradors.Email = ?, Administradors.Password = ?`;
+                 WHERE Administradors.id = ?, Administradors.Password = ?`;
 
     let res = await models.sequelize.query(
         query, 

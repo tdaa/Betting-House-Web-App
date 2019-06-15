@@ -20,12 +20,21 @@ const authMiddleware = (req, res, next) => {
 
 /* Obtém utilizador em sessão. */
 router.get('/session', authMiddleware, function(req, res) {
-    Utilizadores.getUserByID(req.session.passport.user)
-        .then(dados => {
-            let user = JSON.parse(JSON.stringify(dados[0]));
-            res.jsonp(user);
-        })
-        .catch(err => res.status(500).send('Erro ao obter utilizador: ' + err));
+    if (typeof req.session.passport.user != "number") {
+        Administradores.getUserByID(req.session.passport.user)
+            .then(dados => {
+                let user = JSON.parse(JSON.stringify(dados[0]));
+                res.jsonp(user);
+            })
+            .catch(err => res.status(500).send('Erro ao obter utilizador: ' + err));
+    } else {
+        Utilizadores.getUserByID(req.session.passport.user)
+            .then(dados => {
+                let user = JSON.parse(JSON.stringify(dados[0]));
+                res.jsonp(user);
+            })
+            .catch(err => res.status(500).send('Erro ao obter utilizador: ' + err));
+    }
 });
 
 /* Listar Categorias. */

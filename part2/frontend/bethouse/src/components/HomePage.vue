@@ -77,6 +77,7 @@
 </template>
 
 <script>
+/* eslint-disable */ 
 import router from '../router'
 import axios from 'axios'
 
@@ -109,19 +110,25 @@ export default {
       eventosCategoria: [[]]
     }
   },
+  
   created () {
     axios.get('http://localhost:2727/session')
       .then(response => {
         if (response.data) {
-          this.user = response.data[0]
-          this.getCategories()
-          this.getEventos()
+          if (typeof response.data[0].id === 'number') {
+            this.user = response.data[0]
+            this.getCategories()
+            this.getEventos()
+          } else {
+            router.push('/')
+          }
         } else {
           router.push('/')
         }
       })
       .catch(err => console.log(err))
   },
+
   methods: {
     getCategories () {
       axios

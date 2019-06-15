@@ -1,9 +1,11 @@
-var express = require('express');
-var passport = require('passport');
-var router = express.Router();
+var 
+    Administradores = require('../controllers/administradores'),
+    md5 = require('md5'),
+    express = require('express'),
+    passport = require('passport'),
+    router = express.Router();
 
 router.get('/session', (req, res, next) => {
-    console.log(req.user);
     res.send(req.user);
 });
 

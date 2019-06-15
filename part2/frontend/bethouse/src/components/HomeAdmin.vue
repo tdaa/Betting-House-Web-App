@@ -356,6 +356,8 @@
 
 <script>
 import axios from 'axios'
+import router from '../router'
+
 export default {
   name: 'Profile',
 
@@ -427,8 +429,20 @@ export default {
     }
   },
 
-  async created () {
-    await this.getData()
+  created () {
+    axios.get('http://localhost:2727/session')
+      .then(response => {
+        if (response.data) {
+          if (typeof response.data[0].id !== 'number') {
+            this.getData()
+          } else {
+            router.push('/')
+          }
+        } else {
+          router.push('/')
+        }
+      })
+      .catch(err => console.log(err))
   },
 
   methods: {

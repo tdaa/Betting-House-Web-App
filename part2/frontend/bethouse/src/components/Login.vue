@@ -19,7 +19,7 @@
     <br>
     <h3 style="text-align: center">Sign In</h3>
     <br>
-    <b-form @submit="login" v-if="show">
+    <b-form @submit.prevent="login" v-if="show">
       <b-form-group id="input-group-1" label="Email:" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -40,7 +40,7 @@
         ></b-form-input><br>
       </b-form-group>
       <div style="text-align: center">
-        <b-button class="button_custom" type="submit">Iniciar Sessão</b-button>
+        <input class="btn btn-primary button_custom" type="submit" value="Iniciar Sessão"/>
       </div>
     </b-form>
     <br>
@@ -71,7 +71,11 @@ export default {
       axios.get('http://localhost:2727/session')
         .then(response => {
           if (response.data) {
-            router.push('/home')
+            if (typeof response.data[0].id === 'number') {
+              router.push('/home')
+            } else if (typeof response.data[0].id !== 'number') {
+              router.push('/homeAdmin')
+            }
           }
         })
         .catch(err => {
@@ -87,7 +91,7 @@ export default {
 
       axios.post('http://localhost:2727/login/processLogin', data)
         .then(response => {
-          if (response.data['Email'] === 'betadmin@bettinghouse.com') {
+          if (response.data['id'] === 'betadmin@bettinghouse.com') {
             router.push('/homeAdmin')
           } else {
             router.push('/home')
@@ -105,10 +109,12 @@ export default {
 <style>
   .button_custom {
     background-color: rgb(245, 116, 52);
+    border-color: rgb(0, 0, 0);
   }
 
   .button_custom:hover {
     background-color: rgb(199, 101, 53);
+    border-color: rgb(0, 0, 0);
   }
 </style>
 
