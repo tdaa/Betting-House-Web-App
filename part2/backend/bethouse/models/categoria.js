@@ -5,11 +5,13 @@ module.exports = (sequelize, DataTypes) => {
         {
             idCategoria: {
                 type: DataTypes.INTEGER,
+                autoIncrement: true,
                 primaryKey: true
             },
             Designacao: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                unique: true
             }
         },
         {

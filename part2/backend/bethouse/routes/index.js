@@ -240,7 +240,8 @@ router.post('/apostar', authMiddleware, function(req, res, next) {
         });
 });
 
-router.post('/coins/', function (req, res, next) {
+/* Inserir número de coins em utilizador. */
+router.post('/coins', function (req, res, next) {
    Utilizadores.addCoins(req.body.email, req.body.moedas)
        .then(dados => {
            res.jsonp(dados);
@@ -249,7 +250,24 @@ router.post('/coins/', function (req, res, next) {
            console.log(err);
            res.send('Erro no carregamento de moedas: ' + err);
        });
-})
+});
+
+/* Insere um evento na base de dados. */
+router.post('/evento', function(req, res, next) {
+    Eventos.insertEvento(req.body)
+        .then(dados => res.jsonp(dados))
+        .catch(err => console.log(err));
+});
+
+/* Inserir Categoria. */
+router.post('/categoria', authMiddleware, function(req, res) {
+    Categorias.inserir(req.body.novaCategoria)
+        .then(dados => res.jsonp(dados))
+        .catch(err => {
+            console.log(err);
+            res.send('Erro na inserção de nova categoria: ' + err);
+        })
+});
 
 
 module.exports = router;

@@ -33,7 +33,7 @@ insert into Categoria (idCategoria, Designacao)
         (3, 'Hóquei'),
         (4, 'Andebol'),
         (5, 'Rugby');
-
+        
 insert into Resultados (idResultado, Designacao)
 	values
 		(1, 'EMPATE'),
@@ -65,16 +65,6 @@ insert into Evento_has_Resultados (EventoIdEvento, ResultadoIdResultado, Odd)
 		(2, 2, 3.7),
         (2, 3, 5.6);
 
-SELECT idEvento, Vencedor, idResultado_Apostado FROM Aposta
-            JOIN Evento_in_Aposta ON ApostumIdAposta = idAposta
-            JOIN Eventos ON idEvento = EventoIdEvento
-            WHERE idAposta = 1;
-        
-        
-select EventoIdEvento, Odd, Designacao
-from Evento_has_Resultados
-join Resultados ON idResultado = ResultadoIdResultado
-where EventoIdEvento = 1 AND ResultadoIdResultado = 1;
 
 ##### QUERIES #####
 
@@ -83,6 +73,12 @@ DELETE FROM `Utilizadors` WHERE `id` = 1;
 
 # Apaga o registo de uma Aposta.
 DELETE FROM `Aposta` WHERE `idAposta` = 5;
+
+# Apaga o registo de uma Categoria.
+DELETE FROM `Categoria` WHERE `idCategoria` = 13;
+
+# Apaga o registo de um Evento.
+DELETE FROM `Eventos` WHERE `idEvento` = 13;
 
 # Altera uma data de um determinado Evento.
 UPDATE Eventos 
