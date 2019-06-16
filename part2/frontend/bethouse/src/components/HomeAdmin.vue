@@ -55,70 +55,17 @@
             <v-card-text v-if="i === 1">
               <div style="text-align: center;">
                 <b-table head-variant="dark" :items="users" :fields="fieldsUser">
-                  <template slot="detalhes" slot-scope="row">
-                    <b-button size="sm" @click="row.toggleDetails" class="mr-2">
-                      {{ row.detailsShowing ? 'Ocultar' : 'Consultar'}} Apostas
-                    </b-button>
+                  <template slot="nome" slot-scope="data">
+                    {{ data.item.Nome }}
                   </template>
-                  <template slot="row-details" slot-scope="row">
-                    <b-card border-variant="secondary">
-                      <b-card-title>
-                        <span class="headline">Apostas de {{ row.item.nome }}</span>
-                      </b-card-title>
-                      <b-table :items="row.item.apostas" :fields="fields.values()">
-                        <template slot="ganhos_possiveis" slot-scope="data">
-                          {{ Math.round(data.item.ganhosPossiveis * 100) / 100 }}
-                        </template>
-                        <template slot="estado" slot-scope="data">
-                          <div v-if="data.item.estado === 0">
-                            <BCardText>FECHADA</BCardText>
-                          </div>
-                          <div v-else>
-                            <BCardText>ABERTA</BCardText>
-                          </div>
-                        </template>
-                        <template slot="eventos" slot-scope="row">
-                          <v-layout row justify-center>
-                            <v-dialog v-model="dialogEventos" width="600px">
-                              <template v-slot:activator="{ on }">
-                                <v-btn color="primary" dark v-on="on" @click="() => getEventosDeAposta(row)">Ver detalhes</v-btn>
-                              </template>
-                              <v-card>
-                                <v-card-title>
-                                  <span class="headline">Aposta {{ row.item.idAposta }}</span>
-                                </v-card-title>
-                                <v-card-text>
-                                  <div style="text-align: center;">
-                                    <b-table :items="row.item.eventos" :fields="fieldsAposta.values()">
-                                      <template slot="resultado_apostado" slot-scope="data">
-                                        {{ data.item.resultado }}
-                                      </template>
-                                      <template slot="odd" slot-scope="data">
-                                        {{ data.item.odd }}
-                                      </template>
-                                      <template slot="evento" slot-scope="data">
-                                        {{ data.item.idEvento }}
-                                      </template>
-                                    </b-table>
-                                  </div>
-                                </v-card-text>
-                                <v-card-actions>
-                                  <v-spacer></v-spacer>
-                                  <v-btn color="orange darken-1" flat="flat" @click="dialogEventos = false"><b>OK</b></v-btn>
-                                </v-card-actions>
-                              </v-card>
-                            </v-dialog>
-                          </v-layout>
-                        </template>
-                      </b-table>
-                    </b-card>
+                  <template slot="email" slot-scope="data">
+                    {{ data.item.Email }}
                   </template>
                 </b-table>
               </div>
             </v-card-text>
             <v-card-text v-else-if="i === 2">
               <div style="text-align: center">
-                <b-card>
                   <b-table head-variant="dark" :items="eventosAll" :fields="fieldsEventos" style="margin-top: 10px">
                     <template slot="evento" slot-scope="data">
                       {{ data.item.Evento }}
@@ -168,128 +115,114 @@
                       </v-layout>
                     </template>
                   </b-table>
-                  <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6"></div>
-                    <div class="col-md-3" style="text-align: center">
-                      <template>
-                        <div>
-                          <b-button @click="show=true" variant="secondary">Novo Evento</b-button>
-
-                          <b-modal
-                            v-model="show"
-                            title="Registar novo evento"
-                            header-bg-variant="secondary"
-                            header-text-variant="light"
-                            body-bg-variant="light"
-                            body-text-variant="dark"
-                            footer-bg-variant="secondary"
-                            footer-text-variant="light"
-                            size="lg"
-                          >
-                            <div class="row" style="margin-top: 20px">
-                              <div class="col-md-3"></div>
-                              <div class="col-md-6">
-                                <b-alert v-model="showPartsAlert" variant="success" dismissible>
-                                  Participantes registados!
-                                </b-alert>
-                              </div>
-                              <div class="col-md-3"></div>
-                            </div>
-                            <b-container fluid>
-                              <b-row class="mb-2 text-center">
-                                <b-col>Participantes</b-col>
-                                <b-col>Odds</b-col>
-                              </b-row>
-                              <b-row class="mb-2">
-                                <b-col>
-                                  <b-form-select
-                                    required
-                                    v-model="participante"
-                                    :options="resDes"
-                                  ></b-form-select>
-                                </b-col>
-                                <b-col>
-                                  <b-form-input
-                                    required
-                                    class="w-100"
-                                    v-model="odd"
-                                    type="number"
-                                  ></b-form-input>
-                                </b-col>
-                              </b-row>
-                            </b-container>
-
-                            <b-container fluid style="padding-top: 20px">
-                              <b-row class="mb-2 text-center">
-                                <b-col></b-col>
-                                <b-col><b-button variant="danger" @click="() => novoParticipante()">Guardar Participante e Odd</b-button></b-col>
-                                <b-col></b-col>
-                              </b-row>
-                            </b-container>
-
-                            <v-divider></v-divider>
-
-                            <b-container fluid>
-                              <b-row class="mb-2 text-center">
-                                <b-col>Data</b-col>
-                                <b-col>Hora</b-col>
-                              </b-row>
-                              <b-row class="mb-2">
-                                <b-col>
-                                  <b-form-input
-                                    required
-                                    v-model="data"
-                                    type="date">
-                                  </b-form-input>
-                                </b-col>
-                                <b-col>
-                                  <b-form-input
-                                    required
-                                    v-model="hora"
-                                    type="time">
-                                  </b-form-input>
-                                </b-col>
-                              </b-row>
-                            </b-container>
-
-                            <v-divider></v-divider>
-
-                            <b-container fluid>
-                              <b-row class="mb-2 text-center">
-                                <b-col></b-col>
-                                <b-col>Categoria</b-col>
-                                <b-col></b-col>
-                              </b-row>
-                              <b-row class="mb-2">
-                                <b-col></b-col>
-                                <b-col>
-                                  <b-form-select
-                                    required
-                                    v-model="categoria"
-                                    :options="catDes"
-                                  ></b-form-select>
-                                </b-col>
-                                <b-col></b-col>
-                              </b-row>
-                            </b-container>
-
-                            <div slot="modal-footer" class="w-100">
-                              <b-button
-                                variant="warning"
-                                size="md"
-                                class="float-right"
-                                @click="registaEvento"
-                              >
-                                Confirmar
-                              </b-button>
-                            </div>
-                          </b-modal>
+                  <b-button @click="show=true" variant="secondary">Novo Evento</b-button>
+                      <b-modal
+                        v-model="show"
+                        title="Registar novo evento"
+                        header-bg-variant="secondary"
+                        header-text-variant="light"
+                        body-bg-variant="light"
+                        body-text-variant="dark"
+                        footer-bg-variant="secondary"
+                        footer-text-variant="light"
+                        size="lg"
+                      >
+                        <div class="row" style="margin-top: 20px">
+                          <div class="col-md-3"></div>
+                          <div class="col-md-6">
+                            <b-alert v-model="showPartsAlert" variant="success" dismissible>
+                              Participantes registados!
+                            </b-alert>
+                          </div>
+                          <div class="col-md-3"></div>
                         </div>
-                      </template>
-                    </div>
-                  </div>
-                </b-card>
+                        <b-container fluid>
+                          <b-row class="mb-2 text-center">
+                            <b-col>Participantes</b-col>
+                            <b-col>Odds</b-col>
+                          </b-row>
+                          <b-row class="mb-2">
+                            <b-col>
+                              <b-form-select
+                                required
+                                v-model="participante"
+                                :options="resDes"
+                              ></b-form-select>
+                            </b-col>
+                            <b-col>
+                              <b-form-input
+                                required
+                                class="w-100"
+                                v-model="odd"
+                                type="number"
+                              ></b-form-input>
+                            </b-col>
+                          </b-row>
+                        </b-container>
+                        <b-container fluid style="padding-top: 20px">
+                          <b-row class="mb-2 text-center">
+                            <b-col></b-col>
+                            <b-col><b-button variant="danger" @click="() => novoParticipante()">Guardar Participante e Odd</b-button></b-col>
+                            <b-col></b-col>
+                          </b-row>
+                        </b-container>
+
+                        <v-divider></v-divider>
+
+                        <b-container fluid>
+                          <b-row class="mb-2 text-center">
+                            <b-col>Data</b-col>
+                            <b-col>Hora</b-col>
+                          </b-row>
+                          <b-row class="mb-2">
+                            <b-col>
+                              <b-form-input
+                                required
+                                v-model="data"
+                                type="date">
+                              </b-form-input>
+                            </b-col>
+                            <b-col>
+                              <b-form-input
+                                required
+                                v-model="hora"
+                                type="time">
+                              </b-form-input>
+                            </b-col>
+                          </b-row>
+                        </b-container>
+
+                        <v-divider></v-divider>
+
+                        <b-container fluid>
+                          <b-row class="mb-2 text-center">
+                            <b-col></b-col>
+                            <b-col>Categoria</b-col>
+                            <b-col></b-col>
+                          </b-row>
+                          <b-row class="mb-2">
+                            <b-col></b-col>
+                            <b-col>
+                              <b-form-select
+                                required
+                                v-model="categoria"
+                                :options="catDes"
+                              ></b-form-select>
+                            </b-col>
+                            <b-col></b-col>
+                          </b-row>
+                        </b-container>
+                        <div slot="modal-footer" class="w-100">
+                          <b-button
+                            variant="warning"
+                            size="md"
+                            class="float-right"
+                            @click="registaEvento"
+                          >
+                            Confirmar
+                          </b-button>
+                        </div>
+                      </b-modal>
               </div>
             </v-card-text>
             <v-card-text v-else-if="i === 3">
@@ -475,8 +408,7 @@ export default {
       ],
       fieldsUser: [
         'nome',
-        'email',
-        'detalhes'
+        'email'
       ],
       fields: [
         'identificador',
@@ -564,65 +496,26 @@ export default {
           }
         })
         .catch(err => console.log(err))
-      
-      axios.get('http://localhost:2727/utilizadores', { withCredentials: true })
-        .then(response => {
-          console.log(response)
 
+      axios
+        .get('http://localhost:2727/utilizadores', { withCredentials: true })
+        .then(response => {
           if (response.data) {
+            this.users = response.data
           }
         })
         .catch(err => console.log(err))
-      
-      this.users = [
-        {
-          idUser: 1,
-          nome: 'Miguel',
-          email: 'miguel@gmail.com',
-          apostas: [
-            {
-              idAposta: 1,
-              valor: 20.00,
-              estado: 0,
-              ganhosPossiveis: 32.00,
-              eventos: [
-                {
-                  idEvento: 1,
-                  resultado: 'Benfica',
-                  odd: 2.36
-                }
-              ]
-            }
-          ]
-        },
-        {
-          idUser: 2,
-          nome: 'Joana',
-          email: 'joana@gmail.com',
-          apostas: [
-            {
-              idAposta: 2,
-              valor: 10.00,
-              estado: 0,
-              ganhosPossiveis: 100.00,
-              eventos: [
-                {
-                  idEvento: 5,
-                  resultado: 'Barcelona',
-                  odd: 4.36
-                }
-              ]
-            }
-          ]
-        }
-      ]
     },
 
-    getApostasUser (row) {
-      let email = row.item.email
-      let apostas = this.users.filter(u => u.email === email)
-      this.apostas = apostas[0].apostas
-      this.nome = row.item.nome
+    getEventos () {
+      this.eventosAll = []
+      axios
+        .get('http://localhost:2727/eventos')
+        .then(res => {
+          const keys = Object.keys(res.data)
+          keys.forEach(e => this.eventosAll.push(res.data[e]))
+        })
+        .catch(err => console.log(err))
     },
 
     getEventosDeAposta (row) {
@@ -678,6 +571,7 @@ export default {
         .then(res => {
           if (res.data) {
             this.showSucessoEventoNovo = true
+            this.getEventos()
           }
         })
         .catch(err => console.log(err))
