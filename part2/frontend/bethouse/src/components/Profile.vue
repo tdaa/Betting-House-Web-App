@@ -226,7 +226,7 @@ export default {
       axios
         .post('http://localhost:2727/coins/', data, { withCredentials: true })
         .then(res => {
-          if(res.data) {
+          if (res.data) {
             this.showAlert = true
             this.moedas = 0
           }

@@ -101,7 +101,6 @@ Apostas.registarAposta = async function(idUser, boletim) {
 }
 
 Apostas.checkFinalApostas = async function() {
-    console.log('\nEntrei controller apostas!\n');
 
     /* Obter todos os ids das Apostas. */
     let get_idsApostas = await models.sequelize.query(

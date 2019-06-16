@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             idEvento: {
                 type: DataTypes.INTEGER,
+                autoIncrement: true,
                 primaryKey: true
             },
             Estado: {

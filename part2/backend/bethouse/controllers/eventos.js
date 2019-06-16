@@ -60,3 +60,51 @@ Eventos.closeEvento = async function(idEv) {
     
     return {};
 }
+
+Eventos.insertEvento = async function(eventoObj) {
+    var categoria = eventoObj.categoria;
+    var diahora = eventoObj.diahora;
+
+    /* Obter id da categoria do evento em questão. */
+    let get_idCategoria = await models.sequelize.query(
+        `SELECT idCategoria FROM Categoria WHERE Designacao = ?;`,
+        { replacements: [categoria] },
+        { type: models.sequelize.QueryTypes.SELECT }
+    );
+    var id_categoria = JSON.parse(JSON.stringify(get_idCategoria[0][0])).idCategoria;
+
+
+    /* Inserção na tabela 'Evento' e query para obter o ID recentemente adicionado. */
+    let set_ev = await models.sequelize.query(
+        'INSERT INTO Eventos (Estado, DiaHora, idCategoria) VALUES (?, ?, ?);',
+        { replacements: [1, diahora, id_categoria] },
+        { type: models.sequelize.QueryTypes.INSERT }
+    );
+
+    let get_idEvento = await models.sequelize.query(
+        'SELECT idEvento FROM Eventos ORDER BY idEvento DESC LIMIT 1;',
+        { type: models.sequelize.QueryTypes.SELECT }
+    );
+    const id_evento = JSON.parse(JSON.stringify(get_idEvento[0].idEvento));
+
+
+    /* Obter ID's dos participantes e inserir entradas na tabela Evento_has_Resultados. */
+    for (let i = 0; i < eventoObj.resOdds.length; i++) {
+        var equipaObj = eventoObj.resOdds[i];
+
+        let get_idParticipante = await models.sequelize.query(
+            'SELECT idResultado FROM Resultados WHERE Designacao = ?;',
+            { replacements: [equipaObj.participante] },
+            { type: models.sequelize.QueryTypes.SELECT }
+        );
+        const id_participante = JSON.parse(JSON.stringify(get_idParticipante[0][0].idResultado));
+        
+        let set_EvRes = await models.sequelize.query(
+            'INSERT INTO Evento_has_Resultados (Odd, EventoIdEvento, ResultadoIdResultado) VALUES (?, ?, ?);',
+            { replacements: [equipaObj.odd, id_evento, id_participante] },
+            { type: models.sequelize.QueryTypes.INSERT }
+        );
+    }
+
+    return {};
+}

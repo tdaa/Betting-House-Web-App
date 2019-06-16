@@ -45,9 +45,6 @@ passport.use(new LocalStrategy({
 }));
 
 passport.serializeUser((utilizador, done) => {
-    console.log('inside serialize');
-    console.log(utilizador);
-    console.log(utilizador.id);
     done(null, utilizador.id);
 });
 
@@ -56,14 +53,12 @@ passport.deserializeUser((_id, done) => {
         models.Utilizador
             .findOne({ where: { id: _id } })
             .then(utilizador => {
-                console.log(utilizador);
                 done(null, utilizador);
             });
     } else {
         models.Administrador
             .findOne({ where: { id: _id } })
             .then(utilizador => {
-                console.log(utilizador);
                 done(null, utilizador);
             });
     }

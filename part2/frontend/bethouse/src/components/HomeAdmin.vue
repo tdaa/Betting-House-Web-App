@@ -287,6 +287,16 @@
             </v-card-text>
             <v-card-text v-else>
               <div class="text-center">
+                <b-alert v-model="showErrorCat" variant="danger" dismissible>
+                  Categoria já existente!
+                </b-alert>
+              </div>
+              <div class="text-center">
+                <b-alert v-model="showCatAlert" variant="success" dismissible>
+                  Categoria registada com sucesso!
+                </b-alert>
+              </div>
+              <div class="text-center">
                 <b-table head-variant="dark" :items="categorias" :fields="fieldsCategorias">
                   <template slot="identificador" slot-scope="data">
                     {{ data.item.idCategoria }}
@@ -309,11 +319,6 @@
                 >
                   <div class="row" style="margin-top: 20px">
                     <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                      <b-alert v-model="showCatAlert" variant="success" dismissible>
-                        Categoria registada com sucesso!
-                      </b-alert>
-                    </div>
                     <div class="col-md-3"></div>
                   </div>
                   <b-container fluid>
@@ -355,6 +360,8 @@
 </template>
 
 <script>
+/* eslint-disable */
+
 import axios from 'axios'
 import router from '../router'
 
@@ -425,6 +432,7 @@ export default {
       showSucessoEventoNovo: false,
       showNovaCategoria: false,
       showCatAlert: false,
+      showErrorCat: false,
       evs: []
     }
   },
@@ -582,6 +590,7 @@ export default {
 
     registaEvento () {
       this.show = false
+      /*
       let d = this.data.split('-')
       const y = d[0]
       const m = d[1]
@@ -589,7 +598,12 @@ export default {
       let time = this.hora.split(':')
       const h = time[0]
       const min = time[1]
-      this.datetime = new Date(y, m, day, h, min).toISOString()
+      */
+
+      console.log(this.data + ' ' + this.hora)
+
+      //this.datetime = new Date(y, m, day, h, min).toISOString()
+      this.datetime = this.data + ' ' + this.hora
 
       let data = {
         resOdds: this.parts,
@@ -597,39 +611,39 @@ export default {
         categoria: this.categoria
       }
 
-      console.log(data)
-      /*
       axios
         .post('http://localhost:2727/evento', data, { withCredentials: true })
         .then(res => {
+          /*
           if (res.data) {
             this.showSucessoEventoNovo = true
-          }
+          } */
         })
         .catch(err => console.log(err))
-       */
     },
 
     registaCategoria () {
-      // eslint-disable-next-line
       let data = {
         novaCategoria: this.novacat
       }
       this.showNovaCategoria = false
-      this.showCatAlert = true
-      this.getData()
-      /*
-      axios
-      .post('http://localhost:2727/categoria', data, { withCredentials: true })
-      .then(res => {
-        if (res.data) {
-          this.showCatAlert = true
-        }
-       })
-       .catch(err => console.log(err))
-       */
-    }
 
+      if (!this.catDes.includes(this.novacat)) {
+        axios
+          .post('http://localhost:2727/categoria', data, { withCredentials: true })
+          .then(res => {
+            if (res.data) {
+              this.showCatAlert = true
+              this.categorias.push( { idCategoria: res.data.idCategoria, Designacao: res.data.Designacao } );
+            }
+          })
+          .catch(err => console.log(err))
+      } else {
+        this.showErrorCat = true;
+      }
+
+      this.novacat = ''
+    }
   }
 }
 </script>
