@@ -39,8 +39,15 @@
           </i>
         </v-tab>
 
+        <v-tab href="#tab-4">
+          Participantes
+          <i class="material-icons">
+            line_weight
+          </i>
+        </v-tab>
+
         <v-tab-item
-          v-for="i in 3"
+          v-for="i in 4"
           :key="i"
           :value="'tab-' + i"
         >
@@ -285,7 +292,7 @@
                 </b-card>
               </div>
             </v-card-text>
-            <v-card-text v-else>
+            <v-card-text v-else-if="i === 3">
               <div class="text-center">
                 <b-alert v-model="showErrorCat" variant="danger" dismissible>
                   Categoria já existente!
@@ -352,6 +359,73 @@
                 </b-modal>
               </div>
             </v-card-text>
+            <v-card-text v-else>
+              <div class="text-center">
+                <b-alert v-model="showErrorParticipante" variant="danger" dismissible>
+                  Participante já existente!
+                </b-alert>
+              </div>
+              <div class="text-center">
+                <b-alert v-model="showNovoPartAlert" variant="success" dismissible>
+                  Participante registado com sucesso!
+                </b-alert>
+              </div>
+              <div class="text-center">
+                <b-table head-variant="dark" :items="resultados" :fields="fieldsParticipante">
+                  <template slot="identificador" slot-scope="data">
+                    {{ data.item.idResultado }}
+                  </template>
+                  <template slot="designação_de_participante" slot-scope="data">
+                    {{ data.item.Designacao }}
+                  </template>
+                </b-table>
+                <b-button @click="showNovoParticipante=true" variant="secondary">Novo Participante</b-button>
+                <b-modal
+                  v-model="showNovoParticipante"
+                  title="Registar novo participante"
+                  header-bg-variant="secondary"
+                  header-text-variant="light"
+                  body-bg-variant="light"
+                  body-text-variant="dark"
+                  footer-bg-variant="secondary"
+                  footer-text-variant="light"
+                  size="lg"
+                >
+                  <div class="row" style="margin-top: 20px">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                  </div>
+                  <b-container fluid>
+                    <b-row class="mb-2 text-center">
+                      <b-col>Designação do participante</b-col>
+                    </b-row>
+                    <b-row class="mb-2">
+                      <b-col></b-col>
+                      <b-col>
+                        <b-form-input
+                          required
+                          class="w-100"
+                          v-model="novopart"
+                          type="text"
+                        ></b-form-input>
+                      </b-col>
+                      <b-col></b-col>
+                    </b-row>
+                  </b-container>
+
+                  <div slot="modal-footer" class="w-100">
+                    <b-button
+                      variant="warning"
+                      size="md"
+                      class="float-right"
+                      @click="registaParticipante"
+                    >
+                      Confirmar
+                    </b-button>
+                  </div>
+                </b-modal>
+              </div>
+            </v-card-text>
           </v-card>
         </v-tab-item>
       </v-tabs>
@@ -373,6 +447,7 @@ export default {
       show: false,
       participante: '',
       parts: [],
+      novopart: '',
       odd: '',
       data: '',
       datetime: '',
@@ -424,6 +499,10 @@ export default {
         'identificador',
         'categoria'
       ],
+      fieldsParticipante: [
+        'identificador',
+        'designação_de_participante'
+      ],
       dialogEventos: false,
       dialogSingleEvento: false,
       dialogNovoEvento: false,
@@ -433,6 +512,9 @@ export default {
       showNovaCategoria: false,
       showCatAlert: false,
       showErrorCat: false,
+      showErrorParticipante: false,
+      showNovoPartAlert: false,
+      showNovoParticipante: false,
       evs: []
     }
   },
@@ -635,6 +717,7 @@ export default {
             if (res.data) {
               this.showCatAlert = true
               this.categorias.push( { idCategoria: res.data.idCategoria, Designacao: res.data.Designacao } );
+              this.catDes.push(res.data.Designacao)
             }
           })
           .catch(err => console.log(err))
@@ -643,6 +726,32 @@ export default {
       }
 
       this.novacat = ''
+    },
+
+    registaParticipante () {
+      let data = {
+        novoParticipante: this.novopart
+      }
+      this.showNovoParticipante = false
+
+      if (!this.resDes.includes(this.novacat)) {
+        /*
+        axios
+          .post('http://localhost:2727/resultado', data, { withCredentials: true })
+          .then(res => {
+            if (res.data) {
+              this.showNovoPartAlert = true
+              this.resultados.push( { idResultado: res.data.idResultado, Designacao: res.data.Designacao } );
+              this.resDes.push(res.data.Designacao)
+            }
+          })
+          .catch(err => console.log(err))
+        */
+      } else {
+        this.showErrorParticipante = true;
+      }
+
+      this.novopart = ''
     }
   }
 }
