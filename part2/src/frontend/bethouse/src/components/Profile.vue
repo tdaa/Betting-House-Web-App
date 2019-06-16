@@ -2,9 +2,14 @@
   <div>
     <div class="row" style="margin-top: 20px">
       <div class="col-md-3"></div>
-      <div class="col-md-6">
+      <div class="col-md-6" style="text-align: center">
         <b-alert v-model="showAlert" variant="success" dismissible>
           Carregamento efetuado com sucesso!
+        </b-alert>
+      </div>
+      <div class="col-md-5" style="text-align: center">
+        <b-alert v-model="showErrorAlert" variant="danger" dismissible>
+          Introduza um valor válido!
         </b-alert>
       </div>
       <div class="col-md-3"></div>
@@ -131,11 +136,6 @@
             </v-card-text>
             <v-card-text v-else>
               <center>
-                <div>
-                  <b-alert v-model="showErrorAlert" variant="success" dismissible>
-                    Carregamento efetuado com sucesso!
-                  </b-alert>
-                </div>
                 <b-form-group id="input-group-5" label="Carregar moedas:" label-for="input-5">
                   <b-form-input
                     id="input-5"
@@ -164,6 +164,7 @@ export default {
 
   data () {
     return {
+      showAlert: false,
       showErrorAlert: false,
       user: {},
       text: 'taki taki',
@@ -218,21 +219,25 @@ export default {
     },
 
     addEssCoins () {
-      let data = {
-        moedas: this.moedas,
-        email: this.user.Email
-      }
+      if (parseInt(this.moedas) > 0) {
+        let data = {
+          moedas: this.moedas,
+          email: this.user.Email
+        }
 
-      axios
-        .post('http://localhost:2727/coins/', data, { withCredentials: true })
-        .then(res => {
-          if (res.data) {
-            this.showAlert = true
-            this.user.EssCoins = ('' + (parseInt(this.user.EssCoins) + parseInt(this.moedas)));
-            this.moedas = 0
-          }
-        })
-        .catch(err => console.log(err))
+        axios
+          .post('http://localhost:2727/coins/', data, { withCredentials: true })
+          .then(res => {
+            if (res.data) {
+              this.showAlert = true
+              this.user.EssCoins = ('' + (parseInt(this.user.EssCoins) + parseInt(this.moedas)));
+              this.moedas = 0
+            }
+          })
+          .catch(err => console.log(err))
+      } else {
+        this.showErrorAlert = true
+      }
     }
 
   }

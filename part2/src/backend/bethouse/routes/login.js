@@ -1,6 +1,4 @@
 var 
-    Administradores = require('../controllers/administradores'),
-    md5 = require('md5'),
     express = require('express'),
     passport = require('passport'),
     router = express.Router();
