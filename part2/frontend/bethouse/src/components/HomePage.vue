@@ -94,7 +94,7 @@ export default {
         'index',
         'resultado',
         'odd',
-        'aposta'
+        'aposta',
       ],
       fieldsAposta: [
         'resultado',
@@ -137,6 +137,7 @@ export default {
         .then(res => this.categorias = res.data)
         .catch(err => console.log(err))
     },
+
     getEventos: function () {
       axios.get('http://localhost:2727/eventos')
         .then(response => {
@@ -146,6 +147,7 @@ export default {
         })
         .catch(err => console.log(err))
     },
+
     parseEventos: function (list) {
       this.eventosFiltrados = list.filter(e => e.idCategoria === 1)
       // const ids = Object.keys(this.eventosFiltrados)
@@ -172,9 +174,11 @@ export default {
       })
       this.eventosCategoria = this.eventosAMostrar.filter(e => e.categoria === 1)
     },
+
     getEventosDeCategoria (item) {
       this.eventosCategoria = this.eventosAMostrar.filter(e => e.categoria === item.idCategoria)
     },
+
     addEvento (i, ie) {
       let flag = false
       for (var it in this.items) {
@@ -186,6 +190,7 @@ export default {
         this.ganhos += i.item.odd
       }
     },
+
     submeterAposta () {
       if (this.user.EssCoins - this.quantia < 0) {
         this.showErrorAlert = true
@@ -211,9 +216,11 @@ export default {
           })
       }
     },
+
     removerEventoDeAposta (row) {
       this.items.pop(row.index)
     }
+    
   }
 }
 </script>

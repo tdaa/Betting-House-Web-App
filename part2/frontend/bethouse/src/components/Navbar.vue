@@ -14,7 +14,7 @@
                 <b-nav-item-dropdown right>
                     <!-- Using button-content slot -->
                     <template slot="button-content"><b style="font-size: 20px">Menu</b></template>
-                    <b-dropdown-item href="#" @click="goProfile">Perfil</b-dropdown-item>
+                    <b-dropdown-item href="#" v-if="isUser" @click="goProfile">Perfil</b-dropdown-item>
                     <b-dropdown-item href="#" @click="signout">Logout</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
@@ -35,7 +35,8 @@ export default {
 
   data () {
     return {
-      show_user_info: false
+      show_user_info: false,
+      isUser: true
     }
   },
 
@@ -47,9 +48,12 @@ export default {
     getSession () {
       axios.get('http://localhost:2727/session')
         .then(response => {
-          console.log(response.data)
           if (response.data) {
             this.show_user_info = true
+
+            if ( typeof response.data[0].id !== 'number' ) {
+              this.isUser = false
+            }
           }
         })
         .catch(err => {

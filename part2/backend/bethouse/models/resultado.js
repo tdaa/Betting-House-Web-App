@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             idResultado: {
                 type: DataTypes.INTEGER,
+                autoIncrement: true,
                 primaryKey: true
             },
             Designacao: {
