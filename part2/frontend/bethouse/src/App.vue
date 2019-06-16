@@ -2,8 +2,9 @@
   <div id="app">
     <Navbar></Navbar>
     <router-view/>
+    <Footer></Footer>
     <!--
-    <Subcategories></Subcategories>
+    <S></Subcategories>
     <div class="col-lg-12">
       <div class="row">
         <Categories></Categories>
@@ -32,7 +33,7 @@ export default {
 </script>
 
 <style>
-  .color {
-    background-color: silver;
+  #app {
+    overflow: auto;
   }
 </style>

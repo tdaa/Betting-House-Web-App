@@ -38,35 +38,20 @@ router.get('/session', authMiddleware, function(req, res) {
 });
 
 
-/* Listar toda a informação dos Utilizadores. 
+/* Listar toda a informação dos Utilizadores. */
 router.get('/utilizadores', authMiddleware, function(req, res, next) {
     if (typeof req.session.passport.user !== "number") {
         Utilizadores.getAllInfo()
             .then(dados => {
                 console.log(dados);
-
-                var listUsers = [];
-                var usersObj = {};
-
-                for (let i = 0; i < dados.length; i++) {
-                    var user = dados[i];
-
-                    var idUser = '' + dados[i].id;
-                    var idAposta = '' + dados[i].idAposta;
-
-                    if (usersObj[idUser]) {
-                        if (usersObj[idUser]["apostas"]) {
-                            
-                        }
-                    }
-                }
+                res.jsonp(dados);
             })
             .catch(err => {
                 console.log(err);
                 res.send('Erro ao obter informação geral dos utilizadores: ' + err);
             })
     }
-}); */
+});
 
 /* Listar Categorias. */
 router.get('/categorias', authMiddleware, function(req, res) {

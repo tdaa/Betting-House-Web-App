@@ -4,26 +4,16 @@ const Utilizadores = module.exports;
 
 
 Utilizadores.getAllInfo = async function() {
-    let query = `SELECT u.id, u.Email, u.Nome, a.idAposta, a.Valor, 
-	            a.Estado, e.idEvento, r.Designacao, er.Odd
-    
-                FROM Utilizadors as u
-                INNER JOIN Aposta AS a ON u.Email = a.Utilizador_Email
-		        INNER JOIN Evento_in_Aposta AS ea ON a.idAposta = ea.ApostumIdAposta
-			    INNER JOIN Eventos AS e ON e.idEvento = ea.EventoIdEvento
-				INNER JOIN Evento_has_Resultados AS er ON er.EventoIdEvento = e.idEvento
-				INNER JOIN Resultados AS r ON r.idResultado= er.ResultadoIdResultado
-                    
-                WHERE r.idResultado = ea.idResultado_Apostado;`;
-    
+    let query = `SELECT * FROM Utilizadors;`;
+
     let res = await models.sequelize.query(
         query,
         { type: models.sequelize.QueryTypes.SELECT }
     );
 
     return res;
-}
- 
+};
+
 Utilizadores.getUser = async function(Email, Password) {
     let query = `SELECT * FROM Utilizadors
                  WHERE Utilizadors.Email = ?, Utilizadors.Password = ?`;

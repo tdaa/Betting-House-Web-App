@@ -15,6 +15,7 @@
                     <!-- Using button-content slot -->
                     <template slot="button-content"><b style="font-size: 20px">Menu</b></template>
                     <b-dropdown-item href="#" v-if="isUser" @click="goProfile">Perfil</b-dropdown-item>
+                    <b-dropdown-item href="/home" v-if="isUser" @click="goHome">Página Principal</b-dropdown-item>
                     <b-dropdown-item href="#" @click="signout">Logout</b-dropdown-item>
                 </b-nav-item-dropdown>
             </b-navbar-nav>
@@ -50,7 +51,7 @@ export default {
         .then(response => {
           if (response.data) {
             this.show_user_info = true
-
+            console.log(typeof response.data[0].id)
             if ( typeof response.data[0].id !== 'number' ) {
               this.isUser = false
             }
@@ -71,6 +72,10 @@ export default {
 
     goProfile () {
       router.push('/profile')
+    },
+
+    goHome () {
+      router.push('/home')
     }
   }
 

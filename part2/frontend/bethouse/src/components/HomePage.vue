@@ -7,15 +7,15 @@
     </div>
     <div class="row">
       <div class="col-md-7">
-        <div style="margin-top: 20px; padding-left: 10px">
+        <div style="padding-left: 10px">
           <b-card style="font-size: 17px;" header="Categorias" no-body header-bg-variant="dark" header-text-variant="white">
             <b-tabs pills vertical>
               <b-tab v-for="item in categorias" :key="`${item.idCategoria}`" :title="`${item.Designacao}`" title-link-class="btn btn-dark orange" active @click="() => getEventosDeCategoria(item)">
                 <b-card-text v-for="evento in eventosCategoria" :key="evento.idEvento">
-                  <b-card :header="`Evento ${evento.idEvento}`">
+                  <b-card :header="`Evento ${evento.idEvento} - ${evento.data}`">
                     <div class="text-center">
                       <b-table :items="evento" :fields="fields">
-                        <template slot="index" slot-scope="data">
+                        <template slot="identificador" slot-scope="data">
                           {{ data.item.idParticipante}}
                         </template>
                         <template slot="resultado" slot-scope="data">
@@ -27,6 +27,44 @@
                         <template slot="aposta" slot-scope="row">
                           <b-button variant="warning" @click="() => addEvento(row, evento.idEvento)">Apostar!</b-button>
                         </template>
+                        <template slot="info_extra" slot-scope="row">
+                          <div v-if="user.isPremium === 1">
+                            <v-layout row justify-center>
+                              <v-dialog v-model="dialogInfo" width="600px">
+                                <template v-slot:activator="{ on }">
+                                  <b-button variant="warning" v-on="on" @click="() => getInfoExtra(row)">Obter!</b-button>
+                                </template>
+                                <v-card>
+                                  <v-card-title>
+                                    <span class="headline">Informação extra sobre {{ part }}</span>
+                                  </v-card-title>
+                                  <v-card-text>
+                                    <div style="text-align: center;">
+                                      <b-table head-variant="dark" :items="info" :fields="fieldsInfo">
+                                        <template slot="número_de_participações" slot-scope="data">
+                                          {{ data.item.num_matches }}
+                                        </template>
+                                        <template slot="número_de_vitórias" slot-scope="data">
+                                          {{ data.item.num_victories }}
+                                        </template>
+                                        <template slot="percentagem" slot-scope="data">
+                                          {{ Math.round((data.item.num_victories / data.item.num_matches) * 100) }} %
+                                        </template>
+                                      </b-table>
+                                    </div>
+                                  </v-card-text>
+                                  <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn color="orange darken-1" flat="flat" @click="dialogInfo = false"><b>OK</b></v-btn>
+                                  </v-card-actions>
+                                </v-card>
+                              </v-dialog>
+                            </v-layout>
+                          </div>
+                          <div v-else>
+                            Apenas Premium!
+                          </div>
+                        </template>
                       </b-table>
                     </div>
                   </b-card>
@@ -37,7 +75,7 @@
         </div>
       </div>
       <div class="col-md-5">
-        <div style="margin-top: 20px;">
+        <div>
           <b-card style="font-size: 17px; max-width: 95%;" header="Boletim" no-body header-bg-variant="dark" header-text-variant="white">
             <div style="text-align: center;">
               <b-table :items="items" :fields="fieldsAposta">
@@ -77,7 +115,7 @@
 </template>
 
 <script>
-/* eslint-disable */ 
+/* eslint-disable */
 import router from '../router'
 import axios from 'axios'
 
@@ -85,16 +123,18 @@ export default {
   name: 'HomePage',
   data () {
     return {
+      moment: require('moment'),
       showErrorAlert: false,
       user: {},
       quantia: 0,
       ganhos: 0,
       fields: [
         // A virtual column that doesn't exist in items
-        'index',
+        'identificador',
         'resultado',
         'odd',
         'aposta',
+        'info_extra'
       ],
       fieldsAposta: [
         'resultado',
@@ -102,15 +142,23 @@ export default {
         'evento',
         'remover'
       ],
+      fieldsInfo: [
+        'número_de_participações',
+        'número_de_vitórias',
+        'percentagem'
+      ],
       items: [],
       categorias: [],
       eventos: [],
       eventosFiltrados: [],
       eventosAMostrar: [[]],
-      eventosCategoria: [[]]
+      eventosCategoria: [[]],
+      info: [],
+      part: '',
+      dialogInfo: false
     }
   },
-  
+
   created () {
     axios.get('http://localhost:2727/session')
       .then(response => {
@@ -168,6 +216,7 @@ export default {
         })
         evento.categoria = e.idCategoria
         evento.idEvento = e.Evento
+        evento.data = this.moment(e.DiaHora).format("DD/MM/YYYY H:mm:ss")
         this.eventosAMostrar.push(evento)
         // index++
         evento = []
@@ -209,7 +258,10 @@ export default {
 
         axios.post('http://localhost:2727/apostar', data)
           .then(response => {
-            this.items = []
+            if (response.data) {
+              this.items = []
+              this.quantia = 0
+            }
           })
           .catch(errors => {
             console.log(errors)
@@ -219,8 +271,19 @@ export default {
 
     removerEventoDeAposta (row) {
       this.items.pop(row.index)
+    },
+
+    getInfoExtra (row) {
+        this.part = row.item.participante
+        this.info = []
+        axios
+          .get('http://localhost:2727/infoParticipante/' + row.item.participante)
+          .then(res => {
+            this.info.push(res.data)
+          })
+          .catch(err => console.log(err))
     }
-    
+
   }
 }
 </script>
