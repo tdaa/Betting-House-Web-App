@@ -37,6 +37,37 @@ router.get('/session', authMiddleware, function(req, res) {
     }
 });
 
+
+/* Listar toda a informação dos Utilizadores. 
+router.get('/utilizadores', authMiddleware, function(req, res, next) {
+    if (typeof req.session.passport.user !== "number") {
+        Utilizadores.getAllInfo()
+            .then(dados => {
+                console.log(dados);
+
+                var listUsers = [];
+                var usersObj = {};
+
+                for (let i = 0; i < dados.length; i++) {
+                    var user = dados[i];
+
+                    var idUser = '' + dados[i].id;
+                    var idAposta = '' + dados[i].idAposta;
+
+                    if (usersObj[idUser]) {
+                        if (usersObj[idUser]["apostas"]) {
+                            
+                        }
+                    }
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.send('Erro ao obter informação geral dos utilizadores: ' + err);
+            })
+    }
+}); */
+
 /* Listar Categorias. */
 router.get('/categorias', authMiddleware, function(req, res) {
     Categorias.listar()
@@ -175,6 +206,7 @@ router.get('/eventos', async function(req, res) {
 
             await checkFinalApostas();
 
+            console.log(eventos_filtered);
             res.jsonp(eventos_filtered);
         })
         .catch(err => {
@@ -212,9 +244,22 @@ router.get('/eventos/:idEvento', async function(req, res) {
         .catch(errEv => res.status(500).send('Erro na listagem: ' + errEv));
 });
 
+/* Devolve informação para utilizador PREMIUM. */
+router.get('/infoParticipante/:participante', async function(req, res, next) {
+    await Resultados.getInfoParticipante(req.params.participante)
+        .then(dados => {
+            console.log(dados);
+            res.jsonp(dados);
+        })
+        .catch(err => {
+            console.log(err);
+            res.send('Erro ao obter informação de participante: ' + err);
+        });
+});
+
 /* Devolve todas as Apostas de um determinado Utilizador. */
-router.get('/apostas/:email', function(req, res, next) {
-    Apostas.getApostasByEmail(req.params.email)
+router.get('/apostas/:email', async function(req, res, next) {
+    await Apostas.getApostasByEmail(req.params.email)
         .then(dados => {
             res.jsonp(dados);
         })
@@ -222,8 +267,8 @@ router.get('/apostas/:email', function(req, res, next) {
 });
 
 /* Cria uma Aposta nova para um determinado Utilizador e posteriormente subtrai o seu total de coins. */
-router.post('/apostar', authMiddleware, function(req, res, next) {
-    Apostas.registarAposta(req.session.passport.user, req.body)
+router.post('/apostar', authMiddleware, async function(req, res, next) {
+    await Apostas.registarAposta(req.session.passport.user, req.body)
         .then(info => {
             Utilizadores.subtractCoins(info.email, info.coins)
                 .then(dados => {
@@ -253,15 +298,15 @@ router.post('/coins', function (req, res, next) {
 });
 
 /* Insere um evento na base de dados. */
-router.post('/evento', function(req, res, next) {
-    Eventos.insertEvento(req.body)
+router.post('/evento', async function(req, res, next) {
+    await Eventos.insertEvento(req.body)
         .then(dados => res.jsonp(dados))
         .catch(err => console.log(err));
 });
 
 /* Inserir Categoria. */
 router.post('/categoria', authMiddleware, function(req, res) {
-    Categorias.inserir(req.body.novaCategoria)
+    Categorias.insertCategoria(req.body.novaCategoria)
         .then(dados => res.jsonp(dados))
         .catch(err => {
             console.log(err);
@@ -269,5 +314,13 @@ router.post('/categoria', authMiddleware, function(req, res) {
         })
 });
 
+router.post('/resultado', authMiddleware, function(req, res, next) {
+    Resultados.insertResultado(req.body.novoParticipante)
+        .then(dados => res.jsonp(dados))
+        .catch(err => {
+            console.log(err);
+            res.send('Erro na inserção de novo participante: ' + err);
+        })
+});
 
 module.exports = router;

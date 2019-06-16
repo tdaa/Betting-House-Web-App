@@ -8,7 +8,7 @@ Categorias.listar = function() {
     });
 }
 
-Categorias.inserir = async function(new_cat) {
+Categorias.insertCategoria = async function(new_cat) {
     let set_cat = await models.sequelize.query(
         'INSERT INTO Categoria (Designacao) VALUES (?);',
         { replacements: [new_cat] },

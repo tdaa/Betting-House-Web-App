@@ -48,14 +48,14 @@ insert into Eventos (idEvento, Estado, DiaHora, idCategoria)
         
 insert into Eventos (idEvento, Estado, DiaHora, idCategoria)
 	values
-		(4, 1, '2021-05-01 21:30:05', 1);
+		(10, 1, '2019-06-16 17:00:00', 1);
         
 insert into Evento_has_Resultados (EventoIdEvento, ResultadoIdResultado, Odd)
 	values
-		(4, 1, 5.0),
-		(4, 3, 3.7),
-		(4, 4, 2.1);
-        
+		(10, 1, 5.0),
+		(10, 3, 3.7),
+		(10, 4, 2.1);
+	
 insert into Evento_has_Resultados (EventoIdEvento, ResultadoIdResultado, Odd)
 	values
 		(1, 1, 1.5),
@@ -79,6 +79,9 @@ DELETE FROM `Categoria` WHERE `idCategoria` = 13;
 
 # Apaga o registo de um Evento.
 DELETE FROM `Eventos` WHERE `idEvento` = 13;
+
+# Apaga o registo de um Resultado.
+DELETE FROM `Resultados` WHERE `idResultado` = 10;
 
 # Altera uma data de um determinado Evento.
 UPDATE Eventos 
@@ -113,3 +116,35 @@ SELECT Evento_in_Aposta.EventoIdEvento AS idEvento, Resultados.Designacao AS res
                 AND Evento_has_Resultados.ResultadoIdResultado = Evento_in_Aposta.idResultado_Apostado
             JOIN Resultados ON Resultados.idResultado = Evento_in_Aposta.idResultado_Apostado
             WHERE Evento_in_Aposta.ApostumIdAposta = 7;
+
+
+
+
+
+select u.id, u.Email, u.Nome, a.idAposta, a.Valor, 
+	a.Estado, e.idEvento, r.Designacao, er.Odd
+    
+    from Utilizadors as u
+    inner join Aposta as a
+	on u.Email = a.Utilizador_Email
+		inner join Evento_in_Aposta as ea
+        on a.idAposta = ea.ApostumIdAposta
+			inner join Eventos as e
+            on e.idEvento = ea.EventoIdEvento
+				inner join Evento_has_Resultados as er
+                on er.EventoIdEvento = e.idEvento
+					inner join Resultados as r
+                    on r.idResultado= er.ResultadoIdResultado
+                    
+                    where r.idResultado = ea.idResultado_Apostado;
+                    
+
+select idResultado from Resultados
+where Designacao = 'Benfica';
+
+SELECT EventoIdEvento FROM Evento_has_Resultados
+JOIN Eventos On Eventos.idEvento = EventoIdEvento
+WHERE ResultadoIdResultado = 3 AND Eventos.Estado = 0;
+
+SELECT idEvento FROM Eventos
+WHERE Vencedor = 'Benfica';

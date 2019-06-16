@@ -228,6 +228,7 @@ export default {
         .then(res => {
           if (res.data) {
             this.showAlert = true
+            this.user.EssCoins = ('' + (parseInt(this.user.EssCoins) + parseInt(this.moedas)));
             this.moedas = 0
           }
         })

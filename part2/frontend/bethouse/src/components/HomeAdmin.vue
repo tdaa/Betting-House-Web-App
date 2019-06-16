@@ -564,24 +564,16 @@ export default {
           }
         })
         .catch(err => console.log(err))
-      /*
-      axios.get('http://localhost:2727/utilizadores')
+      
+      axios.get('http://localhost:2727/utilizadores', { withCredentials: true })
         .then(response => {
-          if (response.data) {
-            this.users = response.data[0]
+          console.log(response)
 
-            /* Obter apostas do Utilizador em sessão.
-            axios
-              .get('http://localhost:2727/apostas/' + this.user.Email, { withCredentials: true })
-              .then(res => {
-                console.log(res.data)
-                this.apostas = res.data
-              })
-              .catch(err => console.log(err))
+          if (response.data) {
           }
         })
         .catch(err => console.log(err))
-       */
+      
       this.users = [
         {
           idUser: 1,
@@ -672,19 +664,7 @@ export default {
 
     registaEvento () {
       this.show = false
-      /*
-      let d = this.data.split('-')
-      const y = d[0]
-      const m = d[1]
-      const day = d[2]
-      let time = this.hora.split(':')
-      const h = time[0]
-      const min = time[1]
-      */
 
-      console.log(this.data + ' ' + this.hora)
-
-      //this.datetime = new Date(y, m, day, h, min).toISOString()
       this.datetime = this.data + ' ' + this.hora
 
       let data = {
@@ -696,10 +676,9 @@ export default {
       axios
         .post('http://localhost:2727/evento', data, { withCredentials: true })
         .then(res => {
-          /*
           if (res.data) {
             this.showSucessoEventoNovo = true
-          } */
+          }
         })
         .catch(err => console.log(err))
     },
@@ -734,8 +713,9 @@ export default {
       }
       this.showNovoParticipante = false
 
-      if (!this.resDes.includes(this.novacat)) {
-        /*
+      console.log(this.resDes)
+
+      if (!this.resDes.includes(this.novopart)) {
         axios
           .post('http://localhost:2727/resultado', data, { withCredentials: true })
           .then(res => {
@@ -746,7 +726,6 @@ export default {
             }
           })
           .catch(err => console.log(err))
-        */
       } else {
         this.showErrorParticipante = true;
       }
